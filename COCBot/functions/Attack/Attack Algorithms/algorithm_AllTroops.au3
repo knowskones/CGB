@@ -120,14 +120,34 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 		Case 2 ;Three sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			SetLog("Attacking on three sides", $COLOR_BLUE)
 			$nbSides = 3
-		Case 3 ;Two sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		Case 3 ;All sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			SetLog("Attacking on all sides", $COLOR_BLUE)
 			$nbSides = 4
+		Case 4 ;DE Side - Live Base only ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			SetLog("Attacking on Dark Elixir Side.", $COLOR_BLUE)
+			$nbSides = 1
+			GetDEEdge()
 	EndSwitch
 	If ($nbSides = 0) Then Return
 	If _Sleep(1000) Then Return
 
-	Local $listInfoDeploy[13][5] = [[$eGiant, $nbSides, 1, 1, 2] _
+	If $iMatchMode = $LB And $iChkDeploySettings[$LB] = 4 Then   ; Customise DE side wave deployment here
+		Local $listInfoDeploy[13][5] = [[$eGiant, $nbSides, 1, 1, 0] _
+			, [$eWall, $nbSides, 1, 1, 1] _
+			, [$eBarb, $nbSides, 1, 2, 0] _
+			, [$eArch, $nbSides, 1, 3, 0] _
+			, [$eBarb, $nbSides, 2, 2, 0] _
+			, [$eArch, $nbSides, 2, 3, 0] _
+			, ["CC", 1, 1, 1, 1] _
+			, ["HEROES", 1, 2, 1, 0] _
+			, [$eHogs, $nbSides, 1, 1, 1] _
+			, [$eWiza, $nbSides, 1, 1, 0] _
+			, [$eMini, $nbSides, 1, 1, 0] _
+			, [$eArch, $nbSides, 3, 3, 0] _
+			, [$eGobl, $nbSides, 1, 1, 0] _
+			]
+	Else
+		Local $listInfoDeploy[13][5] = [[$eGiant, $nbSides, 1, 1, 2] _
 			, [$eBarb, $nbSides, 1, 2, 0] _
 			, [$eWall, $nbSides, 1, 1, 1] _
 			, [$eArch, $nbSides, 1, 2, 0] _
@@ -141,7 +161,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 			, [$eGobl, $nbSides, 2, 2, 0] _
 			, ["HEROES", 1, 2, 1, 1] _
 			]
-
+	EndIf
 
 	LaunchTroop2($listInfoDeploy, $CC, $King, $Queen)
 

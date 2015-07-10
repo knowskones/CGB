@@ -248,3 +248,114 @@ Func btnSearchMode()
 	WEnd
 EndFunc   ;==>btnSearchMode
 
+
+Func hidehero()
+	GUICtrlSetState($btnHeroSwitch, $GUI_SHOW)
+	GUICtrlSetState($btnNormalSwitch, $GUI_HIDE)
+	For $i = $grpSearchMode To $picSearchReduceTrophy
+		GUICtrlSetState($i, $GUI_HIDE)
+	Next
+	For $i = $grpLiveBaseConditionsKing To $cmbABMeetGEHero
+		GUICtrlSetState($i, $GUI_SHOW)
+
+	Next
+	cmbABGoldElixirHero()
+	For $i = $chkABMeetDEHero To $chkABMeetOneHero
+		GUICtrlSetState($i, $GUI_SHOW)
+	Next
+EndFunc
+Func hidenormal()
+	GUICtrlSetState($btnNormalSwitch, $GUI_SHOW)
+	GUICtrlSetState($btnHeroSwitch, $GUI_HIDE)
+	For $i = $grpLiveBaseConditionsKing To $chkABMeetOneHero
+		GUICtrlSetState($i, $GUI_HIDE)
+	Next
+	For $i = $grpSearchMode To $cmbDBMeetGE
+		GUICtrlSetState($i, $GUI_SHOW)
+	Next
+	cmbDBGoldElixir()
+	For $i = $chkDBMeetDE To $cmbABMeetGE
+		GUICtrlSetState($i, $GUI_SHOW)
+	Next
+	cmbABGoldElixir()
+	For $i = $chkABMeetDE To $picSearchReduceTrophy
+		GUICtrlSetState($i, $GUI_SHOW)
+	Next
+	cmbSearchMode()
+EndFunc
+
+Func chkABEnableAfterHero()
+	If GUICtrlRead($chkABEnableAfterHero) = $GUI_CHECKED Then
+		_GUICtrlEdit_SetReadOnly($txtABEnableAfter, False)
+		GUICtrlSetState($chkDBEnableAfter, $GUI_UNCHECKED)
+		_GUICtrlEdit_SetReadOnly($txtDBEnableAfter, True)
+	Else
+		_GUICtrlEdit_SetReadOnly($txtABEnableAfter, True)
+	EndIf
+EndFunc   ;==>chkABEnableAfter
+
+Func cmbABGoldElixirHero()
+	If _GUICtrlComboBox_GetCurSel($cmbABMeetGEHero) < 2 Then
+		GUICtrlSetState($txtABMinGoldHero, $GUI_SHOW)
+		GUICtrlSetState($picABMinGoldHero, $GUI_SHOW)
+		GUICtrlSetState($txtABMinElixirHero, $GUI_SHOW)
+		GUICtrlSetState($picABMinElixirHero, $GUI_SHOW)
+		GUICtrlSetState($txtABMinGoldPlusElixirHero, $GUI_HIDE)
+		GUICtrlSetState($picABMinGPEGoldHero, $GUI_HIDE)
+		GUICtrlSetState($lblABMinGPEHero, $GUI_HIDE)
+		GUICtrlSetState($picABMinGPEElixirHero, $GUI_HIDE)
+	Else
+		GUICtrlSetState($txtABMinGoldHero, $GUI_HIDE)
+		GUICtrlSetState($picABMinGoldHero, $GUI_HIDE)
+		GUICtrlSetState($txtABMinElixirHero, $GUI_HIDE)
+		GUICtrlSetState($picABMinElixirHero, $GUI_HIDE)
+		GUICtrlSetState($txtABMinGoldPlusElixirHero, $GUI_SHOW)
+		GUICtrlSetState($picABMinGPEGoldHero, $GUI_SHOW)
+		GUICtrlSetState($lblABMinGPEHero, $GUI_SHOW)
+		GUICtrlSetState($picABMinGPEElixirHero, $GUI_SHOW)
+	EndIf
+EndFunc   ;==>cmbABGoldElixirHero
+
+Func chkABMeetDEHero()
+	If GUICtrlRead($chkABMeetDEHero) = $GUI_CHECKED Then
+		_GUICtrlEdit_SetReadOnly($txtABMinDarkElixirHero, False)
+	Else
+		_GUICtrlEdit_SetReadOnly($txtABMinDarkElixirHero, True)
+	EndIf
+EndFunc   ;==>chkABMeetDEHero
+
+Func chkABMeetTrophyHero()
+	If GUICtrlRead($chkABMeetTrophyHero) = $GUI_CHECKED Then
+		_GUICtrlEdit_SetReadOnly($txtABMinTrophyHero, False)
+	Else
+		_GUICtrlEdit_SetReadOnly($txtABMinTrophyHero, True)
+	EndIf
+EndFunc   ;==>chkABMeetTrophyHero
+
+Func chkABMeetTHHero()
+	If GUICtrlRead($chkABMeetTHHero) = $GUI_CHECKED Then
+		GUICtrlSetState($cmbABTHHero, $GUI_ENABLE)
+	Else
+		GUICtrlSetState($cmbABTHHero, $GUI_DISABLE)
+	EndIf
+EndFunc   ;==>chkABMeetTHHero
+
+Func chkABWeakBaseHero()
+	If GUICtrlRead($chkABWeakBaseHero) = $GUI_CHECKED Then
+			GUICtrlSetState($cmbABWeakMortarHero, $GUI_ENABLE)
+			GUICtrlSetState($cmbABWeakWizTowerHero, $GUI_ENABLE)
+	Else
+		GUICtrlSetState($cmbABWeakMortarHero, $GUI_DISABLE)
+		GUICtrlSetState($cmbABWeakWizTowerHero, $GUI_DISABLE)
+	EndIf
+EndFunc   ;==>chkABWeakBaseHero
+
+
+
+
+
+
+
+
+
+

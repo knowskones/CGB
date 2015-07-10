@@ -18,6 +18,10 @@ Func ReturnHome($TakeSS = 1, $GoldChangeCheck = True) ;Return main screen
 	Local $counter = 0
 	Local $hBitmap_Scaled
 
+	If $DisableOtherEBO And $iMatchMode = $LB And $iChkDeploySettings[$LB] = 4 And $DESideEB And ($dropQueen Or $dropKing)Then
+		SaveandDisableEBO()
+		SetLog("Disabling Normal End Battle Options", $COLOR_GREEN)
+	EndIf
 	If $GoldChangeCheck = True Then
 		SetLog("Checking if the battle has finished", $COLOR_BLUE)
 		While GoldElixirChangeEBO()
@@ -38,6 +42,10 @@ Func ReturnHome($TakeSS = 1, $GoldChangeCheck = True) ;Return main screen
 				EndIf
 			EndIf
 		EndIf
+	EndIf
+
+	If $DisableOtherEBO And $iMatchMode = $LB And $iChkDeploySettings[$LB] = 4 And $DESideEB And ($dropQueen Or $dropKing) Then
+		RevertEBO()
 	EndIf
 
 	$checkKPower = False

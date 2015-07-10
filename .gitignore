@@ -1,0 +1,16 @@
+*.ini
+*.log
+*.exe
+*.db
+*.orig
+*.png
+*.jpg
+Profiles/
+Templates/
+Loots/
+AllTowns/
+/.project
+*.sqlite3
+!curl.exe
+Temp/
+lib/debug/

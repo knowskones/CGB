@@ -111,4 +111,44 @@ Func BotDetectFirstTime()
 		Next
 	EndIf
 
+	If GUICtrlRead($chkBoostKing) = $GUI_CHECKED Then
+			If $KingPos[0] = "" Then
+				LocateKing()
+				SaveConfig()
+				If _Sleep(2000) Then Return
+				Click(1, 1) ;Click Away
+			EndIf
+	EndIf
+	If GUICtrlRead($chkBoostQueen) = $GUI_CHECKED Then
+			If $QueenPos[0] = "" Then
+				LocateQueen()
+				SaveConfig()
+				If _Sleep(2000) Then Return
+				Click(1, 1) ;Click Away
+			EndIf
+	EndIf
 EndFunc   ;==>BotDetectFirstTime
+
+Func LocateKing()
+	While 1
+		$MsgBox = MsgBox(1 + 262144, "Locate King", "Click OK then click on your King bed.", 0, $frmBot)
+		If $MsgBox = 1 Then
+			$KingPos[0] = FindPos()[0]
+			$KingPos[1] = FindPos()[1]
+			SetLog("-King Bed=  " & "(" & $KingPos[0] & "," & $KingPos[1] & ")", $COLOR_GREEN)
+		EndIf
+		ExitLoop
+	WEnd
+EndFunc   ;==>LocateKing
+
+Func LocateQueen()
+	While 1
+		$MsgBox = MsgBox(1 + 262144, "Locate Queen", "Click OK then click on your Queen bed.", 0, $frmBot)
+		If $MsgBox = 1 Then
+			$QueenPos[0] = FindPos()[0]
+			$QueenPos[1] = FindPos()[1]
+			SetLog("-Queen Bed=  " & "(" & $QueenPos[0] & "," & $QueenPos[1] & ")", $COLOR_GREEN)
+		EndIf
+		ExitLoop
+	WEnd
+EndFunc   ;==>LocateQueen

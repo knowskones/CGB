@@ -247,6 +247,7 @@ Global $KingAttack[$iModeCount] ;King attack settings
 Global $QueenAttack[$iModeCount] ;Queen attack settings
 Global $A[4] = [112, 111, 116, 97]
 
+Global $dropQueen, $dropKing
 Global $checkKPower = False ; Check for King activate power
 Global $checkQPower = False ; Check for Queen activate power
 Global $iActivateKQCondition
@@ -562,3 +563,16 @@ Global $iMakeScreenshotNow = False
 Global $lastversion = ""
 Global $lastmessage = ""
 Global $ichkVersion = 1
+
+;De Side Switch and End Early
+Global $DEEdge, $DarkLow
+Global $saveiChkTimeStopAtk, $saveiChkTimeStopAtk2, $saveichkEndOneStar, $saveichkEndTwoStars
+Global $DESideEB, $DELowEndMin, $DisableOtherEBO
+Global $DEEndAq, $DEEndBk, $DEEndOneStar
+;Location for BK & AQ for boosting
+Global $KingPos[2], $QueenPos[2]
+;Hero Healing Filter
+Global $LBsave[17], $LBHeroFilter, $LBAQFilter, $LBBKFilter
+Global 	$iCmbMeetGEHero, $iChkMeetDEHero, $iChkMeetTrophyHero, $iChkMeetTHHero, $iChkMeetTHOHero, $iChkWeakBaseHero, $iChkMeetOneHero, $iEnableAfterCountHero, $iMinGoldHero
+Global $iMinElixirHero, $iMinGoldPlusElixirHero,$iMinDarkHero, $iMinTrophyHero, $iCmbTHHero, $iCmbWeakMortarHero, $iCmbWeakWizTowerHero, $iMaxTHHero
+

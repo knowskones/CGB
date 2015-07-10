@@ -116,6 +116,26 @@ Func readConfig() ;Reads config and sets it to the variables
 		$iCmbWeakMortar[$LB] = IniRead($config, "search", "ABWeakMortar", "5")
 		$iCmbWeakWizTower[$LB] = IniRead($config, "search", "ABWeakWizTower", "4")
 
+
+	;Hero Filter Settings.
+		$iCmbMeetGEHero = IniRead($config, "search", "ABMeetGEHero", "2")
+		$iChkMeetDEHero = IniRead($config, "search", "ABMeetDEHero", "0")
+		$iChkMeetTrophyHero = IniRead($config, "search", "ABMeetTrophyHero", "0")
+		$iChkMeetTHHero = IniRead($config, "search", "ABMeetTHHero", "0")
+		$iChkMeetTHOHero = IniRead($config, "search", "ABMeetTHOHero", "0")
+		$iChkWeakBaseHero = IniRead($config, "search", "ABWeakBaseHero", "0")
+		$iChkMeetOneHero = IniRead($config, "search", "ABMeetOneHero", "0")
+
+		$iMinGoldHero = IniRead($config, "search", "ABsearchGoldHero", "80000")
+		$iMinElixirHero = IniRead($config, "search", "ABsearchElixirHero", "80000")
+		$iMinGoldPlusElixirHero = IniRead($config, "search", "ABsearchGoldPlusElixirHero", "160000")
+		$iMinDarkHero = IniRead($config, "search", "ABsearchDarkHero", "0")
+		$iMinTrophyHero = IniRead($config, "search", "ABsearchTrophyHero", "0")
+		$iCmbTHHero = IniRead($config, "search", "ABTHLevelHero", "0")
+		$iCmbWeakMortarHero = IniRead($config, "search", "ABWeakMortarHero", "5")
+		$iCmbWeakWizTowerHero = IniRead($config, "search", "ABWeakWizTowerHero", "4")
+
+
 		$iChkSearchReduction = IniRead($config, "search", "reduction", "1")
 		$ReduceCount = IniRead($config, "search", "reduceCount", "20")
 		$ReduceGold = IniRead($config, "search", "reduceGold", "2000")
@@ -124,6 +144,8 @@ Func readConfig() ;Reads config and sets it to the variables
 		$ReduceDark = IniRead($config, "search", "reduceDark", "100")
 		$ReduceTrophy = IniRead($config, "search", "reduceTrophy", "2")
 
+		$LBBKFilter = IniRead($config, "search", "LBBKFilter", "1")
+		$LBAQFilter = IniRead($config, "search", "LBAQFilter", "1")
 		;Attack Basics Settings-------------------------------------------------------------------------
 		$iChkDeploySettings[$DB] = IniRead($config, "attack", "DBDeploy", "3")
 		$iCmbUnitDelay[$DB] = IniRead($config, "attack", "DBUnitD", "5")
@@ -219,6 +241,13 @@ Func readConfig() ;Reads config and sets it to the variables
 		$ichkEndTwoStars = IniRead($config, "endbattle", "chkEndTwoStars", "0")
 		$ichkEndNoResources = IniRead($config, "endbattle", "chkEndNoResources", "0")
 
+
+		$DESideEB = IniRead($config, "endbattle", "chkDESideEB", "0")
+		$DELowEndMin = IniRead($config, "endbattle", "txtDELowEndMin", "25")
+		$DisableOtherEBO = IniRead($config, "endbattle", "chkDisableOtherEBO", "0")
+		$DEEndOneStar = IniRead($config, "endbattle", "chkDEEndOneStar", "0")
+		$DEEndBk = IniRead($config, "endbattle", "chkDEEndBk", "0")
+		$DEEndAq = IniRead($config, "endbattle", "chkDEEndAq", "0")
 
 
 		;Donate Settings-------------------------------------------------------------------------

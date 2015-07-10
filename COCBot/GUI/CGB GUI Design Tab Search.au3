@@ -19,25 +19,22 @@
 
 $tabSearch = GUICtrlCreateTabItem("Search")
 	Local $x = 30, $y = 150
-	$grpSearchMode = GUICtrlCreateGroup("Search Mode", $x - 20, $y - 20, 225, 55)
-		$cmbSearchMode = GUICtrlCreateCombo("", $x , $y, 190, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+	$grpSearchMode = GUICtrlCreateGroup("Search Mode", $x - 20, $y - 20, 160, 55)
+		$cmbSearchMode = GUICtrlCreateCombo("", $x - 10 , $y, 140, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			$txtTip = "Only Deadbases: full collectors. Most loot outside of village." & @CRLF & _
 						"Only LiveBases: full storages. Most loot inside of village." & @CRLF & "Dual Mode: Search for both, whatever comes first is attacked."
-			GUICtrlSetData(-1, "Only DeadBases|Only LiveBases|Both DeadBases and LiveBases", "Only DeadBases")
+			GUICtrlSetData(-1, "Only DeadBases|Only LiveBases|Both Dead & LiveBases", "Only DeadBases")
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "cmbSearchMode")
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
-	$x = 260
-	$grpAlert = GUICtrlCreateGroup("Alert", $x - 20, $y - 20, 220, 55)
-		$chkAlertSearch = GUICtrlCreateCheckbox("Alert me when a Base is found.", $x, $y, -1, -1, $BS_MULTILINE)
+	$x = 195
+	$grpH = GUICtrlCreateGroup("Alert", $x - 20, $y - 20, 180, 55)
+		$chkAlertSearch = GUICtrlCreateCheckbox("Alert me when a Base is found.", $x - 10, $y, -1, -1, $BS_MULTILINE)
 			GUICtrlSetTip(-1, "Check this if you want an Audio alarm & a Balloon Tip when a Base to attack is found.")
 			GUICtrlSetState(-1, $GUI_CHECKED)
-#cs		$y += 21
-		$btnSearchMode = GUICtrlCreateButton("Search Mode", $x + 90, $y, 100, 25)
-			GUICtrlSetOnEvent(-1, "btnSearchMode")
-#ce			GUICtrlSetTip(-1, "Does not attack. Searches for a Village that meets conditions.")
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
+
 
 	Local $x = 30, $y = 210
 	$grpDeadBaseConditions = GUICtrlCreateGroup("DeadBase Conditions", $x - 20, $y - 20, 225, 255)
@@ -160,127 +157,127 @@ $tabSearch = GUICtrlCreateTabItem("Search")
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 	Local $x = 260, $y = 210
-	$grpLiveBaseConditions = GUICtrlCreateGroup("LiveBase Conditions", $x - 20, $y - 20, 220, 255)
-		$chkABEnableAfter = GUICtrlCreateCheckbox("Delay Start:", $x, $y, -1, -1)
-			$txtTip = "Search for a Live Base after this No. of searches, start searching for Dead Bases first.."
-			GUICtrlSetTip(-1, $txtTip)
-			GUICtrlSetOnEvent(-1, "chkABEnableAfter")
-			GUICtrlSetState(-1, $GUI_HIDE)
-		$txtABEnableAfter = GUICtrlCreateInput("150", $x + 80, $y, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-			$txtTip = "No. of searches to wait before activating this mode."
-			GUICtrlSetLimit(-1, 3)
-			GUICtrlSetTip(-1, $txtTip)
-			_GUICtrlEdit_SetReadOnly(-1, True)
-			GUICtrlSetState(-1, $GUI_HIDE)
-		$lblABEnableAfter = GUICtrlCreateLabel("search(es).", $x + 132, $y + 4, -1, -1)
-			GUICtrlSetTip(-1, $txtTip)
-			GUICtrlSetState(-1, $GUI_HIDE)
-		$y += 21
-		$cmbABMeetGE = GUICtrlCreateCombo("", $x , $y + 10, 65, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-			$txtTip = "Search for a base that meets the values set for Min. Gold, Elixir."
-			GUICtrlSetData(-1, "G And E|G Or E|G + E", "G + E")
-			GUICtrlSetTip(-1, $txtTip)
-			GUICtrlSetOnEvent(-1, "cmbABGoldElixir")
-		$txtABMinGold = GUICtrlCreateInput("80000", $x + 80, $y, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-			$txtTip = "Set the Min. amount of Gold to search for on a village to attack."
-			GUICtrlSetTip(-1, $txtTip)
-			GUICtrlSetLimit(-1, 6)
-			GUICtrlSetState (-1, $GUI_HIDE)
-		$picABMinGold = GUICtrlCreateIcon($pIconLib, $eIcnGold, $x + 131, $y, 16, 16)
-			GUICtrlSetTip(-1, $txtTip)
-			GUICtrlSetState (-1, $GUI_HIDE)
-		$y += 21
-		$txtABMinElixir = GUICtrlCreateInput("80000", $x + 80, $y, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-			$txtTip = "Set the Min. amount of Elixir to search for on a village to attack."
-			GUICtrlSetTip(-1, $txtTip)
-			GUICtrlSetLimit(-1, 6)
-			GUICtrlSetState (-1, $GUI_HIDE)
-		$picABMinElixir = GUICtrlCreateIcon($pIconLib, $eIcnElixir, $x + 131, $y, 16, 16)
-			GUICtrlSetTip(-1, $txtTip)
-			GUICtrlSetState (-1, $GUI_HIDE)
-		$y -= 11
-		$txtABMinGoldPlusElixir = GUICtrlCreateInput("160000", $x + 80, $y, 50, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-			$txtTip = "Set the Min. amount of Gold + Elixir to search for on a village to attack."
-			GUICtrlSetTip(-1, $txtTip)
-			GUICtrlSetLimit(-1, 6)
-		$picABMinGPEGold = GUICtrlCreateIcon($pIconLib, $eIcnGold, $x + 131, $y + 1, 16, 16)
-			GUICtrlSetTip(-1, $txtTip)
-		$lblABMinGPE = GUICtrlCreateLabel("+", $x + 147, $y + 1, -1, -1)
-			GUICtrlSetTip(-1, $txtTip)
-		$picABMinGPEElixir = GUICtrlCreateIcon($pIconLib, $eIcnElixir, $x + 153, $y + 1, 16, 16)
-			GUICtrlSetTip(-1, $txtTip)
-		$y += 31
-		$chkABMeetDE = GUICtrlCreateCheckbox("Dark Elixir", $x , $y, -1, -1)
-			$txtTip = "Search for a base that meets the value set for Min. Dark Elixir."
-			GUICtrlSetOnEvent(-1, "chkABMeetDE")
-			GUICtrlSetTip(-1, $txtTip)
-		$txtABMinDarkElixir = GUICtrlCreateInput("0", $x + 80, $y, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-			$txtTip = "Set the Min. amount of Dark Elixir to search for on a village to attack."
-			GUICtrlSetTip(-1, $txtTip)
-			GUICtrlSetLimit(-1, 5)
-			_GUICtrlEdit_SetReadOnly(-1, True)
-		$picABMinDarkElixir = GUICtrlCreateIcon($pIconLib, $eIcnDark, $x + 131, $y, 16, 16)
-			GUICtrlSetTip(-1, $txtTip)
-		$y += 21
-		$chkABMeetTrophy = GUICtrlCreateCheckbox("Trophies", $x, $y, -1, -1)
-			$txtTip = "Search for a base that meets the value set for Min. Trophies."
-			GUICtrlSetOnEvent(-1, "chkABMeetTrophy")
-			GUICtrlSetTip(-1, $txtTip)
-		$txtABMinTrophy = GUICtrlCreateInput("0", $x + 80, $y, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-			$txtTip = "Set the Min. amount of Trophies to search for on a village to attack."
-			GUICtrlSetTip(-1, $txtTip)
-			_GUICtrlEdit_SetReadOnly(-1, True)
-			GUICtrlSetLimit(-1, 2)
-		$picABMinTrophies = GUICtrlCreateIcon($pIconLib, $eIcnTrophy, $x + 131, $y, 16, 16)
-			GUICtrlSetTip(-1, $txtTip)
-		$y += 21
-		$chkABMeetTH = GUICtrlCreateCheckbox("Townhall", $x, $y, -1, -1)
-			$txtTip = "Search for a base that meets the value set for Max. Townhall Level."
-			GUICtrlSetOnEvent(-1, "chkABMeetTH")
-			GUICtrlSetTip(-1, $txtTip)
-		$cmbABTH = GUICtrlCreateCombo("", $x + 80, $y - 1, 50, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-			$txtTip = "Set the Max. level of the Townhall to search for on a village to attack."
-			GUICtrlSetTip(-1, $txtTip)
-			GUICtrlSetState(-1, $GUI_DISABLE)
-			GUICtrlSetData(-1, "4-6|7|8|9|10", "4-6")
-		$picABMaxTH1 = GUICtrlCreateIcon($pIconLib, $eIcnTH1, $x + 131, $y - 3, 24, 24)
-			GUICtrlSetTip(-1, $txtTip)
-		$lblABMaxTH = GUICtrlCreateLabel("-", $x + 156, $y + 1, -1, -1)
-			GUICtrlSetTip(-1, $txtTip)
-		$picABMaxTH10 = GUICtrlCreateIcon($pIconLib, $eIcnTH10, $x + 160, $y - 3, 24, 24)
-			GUICtrlSetTip(-1, $txtTip)
-		$y += 21
-		$chkABMeetTHO = GUICtrlCreateCheckbox("Townhall Outside", $x, $y, -1, -1)
-			$txtTip = "Search for a base that has an exposed Townhall. (Outside of Walls)"
-			GUICtrlSetTip(-1, $txtTip)
-		$y += 21
-		$chkABWeakBase = GUICtrlCreateCheckbox("WeakBase", $x, $y, -1, -1)
-			$txtTip = "Search for a base that has low defences."
-			GUICtrlSetTip(-1, $txtTip)
-			GUICtrlSetOnEvent(-1, "chkABWeakBase")
-		$cmbABWeakMortar = GUICtrlCreateCombo("", $x + 80, $y, 50, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-			$txtTip = "Set the Max. level of the Mortar to search for on a village to attack."
-			GUICtrlSetTip(-1, $txtTip)
-			GUICtrlSetData(-1, "-|Lvl 1|Lvl 2|Lvl 3|Lvl 4|Lvl 5|Lvl 6|Lvl 7|Lvl 8", "Lvl 5")
-			GUICtrlSetState(-1, $GUI_DISABLE)
-		$picABWeakMortar = GUICtrlCreateIcon($pIconLib, $eIcnMortar, $x + 131, $y - 3, 24, 24)
-			GUICtrlSetTip(-1, $txtTip)
-		$y +=23
-		$cmbABWeakWizTower = GUICtrlCreateCombo("", $x + 80, $y, 50, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-			$txtTip = "Set the Max. level of the Wizard Tower to search for on a village to attack."
-			GUICtrlSetTip(-1, $txtTip)
-			GUICtrlSetData(-1, "-|Lvl 1|Lvl 2|Lvl 3|Lvl 4|Lvl 5|Lvl 6|Lvl 7|Lvl 8", "Lvl 4")
-			GUICtrlSetState(-1, $GUI_DISABLE)
-		$picABWeakWizTower = GUICtrlCreateIcon($pIconLib, $eIcnWizTower, $x + 131, $y - 2, 24, 24)
-			GUICtrlSetTip(-1, $txtTip)
-		$y += 30
-		$chkABMeetOne = GUICtrlCreateCheckbox("Meet One Then Attack", $x, $y, -1, -1)
-			$txtTip = "Just meet only ONE of the above conditions, then Attack."
-			GUICtrlSetTip(-1, $txtTip)
-		For $i = $cmbABMeetGE To $chkABMeetOne
-			GUICtrlSetState($i, $GUI_DISABLE)
-		Next
-	GUICtrlCreateGroup("", -99, -99, 1, 1)
+			$grpLiveBaseConditions = GUICtrlCreateGroup("LiveBase Conditions", $x - 20, $y - 20, 220, 255)
+				$chkABEnableAfter = GUICtrlCreateCheckbox("Delay Start:", $x, $y, -1, -1)
+					$txtTip = "Search for a Live Base after this No. of searches, start searching for Dead Bases first.."
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetOnEvent(-1, "chkABEnableAfter")
+					GUICtrlSetState(-1, $GUI_HIDE)
+				$txtABEnableAfter = GUICtrlCreateInput("150", $x + 80, $y, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+					$txtTip = "No. of searches to wait before activating this mode."
+					GUICtrlSetLimit(-1, 3)
+					GUICtrlSetTip(-1, $txtTip)
+					_GUICtrlEdit_SetReadOnly(-1, True)
+					GUICtrlSetState(-1, $GUI_HIDE)
+				$lblABEnableAfter = GUICtrlCreateLabel("search(es).", $x + 132, $y + 4, -1, -1)
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetState(-1, $GUI_HIDE)
+				$y += 21
+				$cmbABMeetGE = GUICtrlCreateCombo("", $x , $y + 10, 65, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+					$txtTip = "Search for a base that meets the values set for Min. Gold, Elixir."
+					GUICtrlSetData(-1, "G And E|G Or E|G + E", "G + E")
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetOnEvent(-1, "cmbABGoldElixir")
+				$txtABMinGold = GUICtrlCreateInput("80000", $x + 80, $y, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+					$txtTip = "Set the Min. amount of Gold to search for on a village to attack."
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetLimit(-1, 6)
+					GUICtrlSetState (-1, $GUI_HIDE)
+				$picABMinGold = GUICtrlCreateIcon($pIconLib, $eIcnGold, $x + 131, $y, 16, 16)
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetState (-1, $GUI_HIDE)
+				$y += 21
+				$txtABMinElixir = GUICtrlCreateInput("80000", $x + 80, $y, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+					$txtTip = "Set the Min. amount of Elixir to search for on a village to attack."
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetLimit(-1, 6)
+					GUICtrlSetState (-1, $GUI_HIDE)
+				$picABMinElixir = GUICtrlCreateIcon($pIconLib, $eIcnElixir, $x + 131, $y, 16, 16)
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetState (-1, $GUI_HIDE)
+				$y -= 11
+				$txtABMinGoldPlusElixir = GUICtrlCreateInput("160000", $x + 80, $y, 50, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+					$txtTip = "Set the Min. amount of Gold + Elixir to search for on a village to attack."
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetLimit(-1, 6)
+				$picABMinGPEGold = GUICtrlCreateIcon($pIconLib, $eIcnGold, $x + 131, $y + 1, 16, 16)
+					GUICtrlSetTip(-1, $txtTip)
+				$lblABMinGPE = GUICtrlCreateLabel("+", $x + 147, $y + 1, -1, -1)
+					GUICtrlSetTip(-1, $txtTip)
+				$picABMinGPEElixir = GUICtrlCreateIcon($pIconLib, $eIcnElixir, $x + 153, $y + 1, 16, 16)
+					GUICtrlSetTip(-1, $txtTip)
+				$y += 31
+				$chkABMeetDE = GUICtrlCreateCheckbox("Dark Elixir", $x , $y, -1, -1)
+					$txtTip = "Search for a base that meets the value set for Min. Dark Elixir."
+					GUICtrlSetOnEvent(-1, "chkABMeetDE")
+					GUICtrlSetTip(-1, $txtTip)
+				$txtABMinDarkElixir = GUICtrlCreateInput("0", $x + 80, $y, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+					$txtTip = "Set the Min. amount of Dark Elixir to search for on a village to attack."
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetLimit(-1, 5)
+					_GUICtrlEdit_SetReadOnly(-1, True)
+				$picABMinDarkElixir = GUICtrlCreateIcon($pIconLib, $eIcnDark, $x + 131, $y, 16, 16)
+					GUICtrlSetTip(-1, $txtTip)
+				$y += 21
+				$chkABMeetTrophy = GUICtrlCreateCheckbox("Trophies", $x, $y, -1, -1)
+					$txtTip = "Search for a base that meets the value set for Min. Trophies."
+					GUICtrlSetOnEvent(-1, "chkABMeetTrophy")
+					GUICtrlSetTip(-1, $txtTip)
+				$txtABMinTrophy = GUICtrlCreateInput("0", $x + 80, $y, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+					$txtTip = "Set the Min. amount of Trophies to search for on a village to attack."
+					GUICtrlSetTip(-1, $txtTip)
+					_GUICtrlEdit_SetReadOnly(-1, True)
+					GUICtrlSetLimit(-1, 2)
+				$picABMinTrophies = GUICtrlCreateIcon($pIconLib, $eIcnTrophy, $x + 131, $y, 16, 16)
+					GUICtrlSetTip(-1, $txtTip)
+				$y += 21
+				$chkABMeetTH = GUICtrlCreateCheckbox("Townhall", $x, $y, -1, -1)
+					$txtTip = "Search for a base that meets the value set for Max. Townhall Level."
+					GUICtrlSetOnEvent(-1, "chkABMeetTH")
+					GUICtrlSetTip(-1, $txtTip)
+				$cmbABTH = GUICtrlCreateCombo("", $x + 80, $y - 1, 50, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+					$txtTip = "Set the Max. level of the Townhall to search for on a village to attack."
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetState(-1, $GUI_DISABLE)
+					GUICtrlSetData(-1, "4-6|7|8|9|10", "4-6")
+				$picABMaxTH1 = GUICtrlCreateIcon($pIconLib, $eIcnTH1, $x + 131, $y - 3, 24, 24)
+					GUICtrlSetTip(-1, $txtTip)
+				$lblABMaxTH = GUICtrlCreateLabel("-", $x + 156, $y + 1, -1, -1)
+					GUICtrlSetTip(-1, $txtTip)
+				$picABMaxTH10 = GUICtrlCreateIcon($pIconLib, $eIcnTH10, $x + 160, $y - 3, 24, 24)
+					GUICtrlSetTip(-1, $txtTip)
+				$y += 21
+				$chkABMeetTHO = GUICtrlCreateCheckbox("Townhall Outside", $x, $y, -1, -1)
+					$txtTip = "Search for a base that has an exposed Townhall. (Outside of Walls)"
+					GUICtrlSetTip(-1, $txtTip)
+				$y += 21
+				$chkABWeakBase = GUICtrlCreateCheckbox("WeakBase", $x, $y, -1, -1)
+					$txtTip = "Search for a base that has low defences."
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetOnEvent(-1, "chkABWeakBase")
+				$cmbABWeakMortar = GUICtrlCreateCombo("", $x + 80, $y, 50, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+					$txtTip = "Set the Max. level of the Mortar to search for on a village to attack."
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetData(-1, "-|Lvl 1|Lvl 2|Lvl 3|Lvl 4|Lvl 5|Lvl 6|Lvl 7|Lvl 8", "Lvl 5")
+					GUICtrlSetState(-1, $GUI_DISABLE)
+				$picABWeakMortar = GUICtrlCreateIcon($pIconLib, $eIcnMortar, $x + 131, $y - 3, 24, 24)
+					GUICtrlSetTip(-1, $txtTip)
+				$y +=23
+				$cmbABWeakWizTower = GUICtrlCreateCombo("", $x + 80, $y, 50, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+					$txtTip = "Set the Max. level of the Wizard Tower to search for on a village to attack."
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetData(-1, "-|Lvl 1|Lvl 2|Lvl 3|Lvl 4|Lvl 5|Lvl 6|Lvl 7|Lvl 8", "Lvl 4")
+					GUICtrlSetState(-1, $GUI_DISABLE)
+				$picABWeakWizTower = GUICtrlCreateIcon($pIconLib, $eIcnWizTower, $x + 131, $y - 2, 24, 24)
+					GUICtrlSetTip(-1, $txtTip)
+				$y += 30
+				$chkABMeetOne = GUICtrlCreateCheckbox("Meet One Then Attack", $x, $y, -1, -1)
+					$txtTip = "Just meet only ONE of the above conditions, then Attack."
+					GUICtrlSetTip(-1, $txtTip)
+				For $i = $cmbABMeetGE To $chkABMeetOne
+					GUICtrlSetState($i, $GUI_DISABLE)
+				Next
+			GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 	Local $x = 30, $y = 470
 	$grpSearchReduction = GUICtrlCreateGroup("Search Reduction", $x - 20, $y - 20, 450, 55)
@@ -347,4 +344,146 @@ $tabSearch = GUICtrlCreateTabItem("Search")
 		$picSearchReduceTrophy = GUICtrlCreateIcon($pIconLib, $eIcnTrophy, $x + 41, $y, 16, 16)
 			GUICtrlSetTip(-1, $txtTip)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
+
+		Local $x = 380, $y = 150
+		$grpHeroFilterSwitch = GUICtrlCreateGroup("Advanced Search", $x - 20, $y - 20, 100, 55)
+		$btnHeroSwitch = GUICtrlCreateButton("Normal Filters", $x - 15, $y - 5, 90, 35)
+			IF $btnColor then GUICtrlSetBkColor(-1, 0x5CAD85)
+			GUICtrlSetOnEvent($btnHeroSwitch, "hidenormal")
+			GUICtrlSetState($btnHeroSwitch, $GUI_HIDE)
+		$btnNormalSwitch = GUICtrlCreateButton("Advanced Filters", $x - 15, $y - 5, 90, 35)
+			IF $btnColor then GUICtrlSetBkColor(-1, 0xDB4D4D)
+			GUICtrlSetOnEvent($btnNormalSwitch, "hidehero")
+		GUICtrlCreateGroup("", -99, -99, 1, 1)
+
+
+		Local $x = 30, $y = 210
+			$grpLiveBaseConditionsKing = GUICtrlCreateGroup("King Filter", $x - 20, $y - 20, 225, 130)
+			GUICtrlSetState (-1, $GUI_HIDE)
+			GUICtrlCreatePic (@ScriptDir & "\Icons\KingAbility.jpg", $x, $y - 5, 60, 94)
+			GUICtrlSetState (-1, $GUI_HIDE)
+			$chkLBBKFilter = GUICtrlCreateCheckbox("Enable For Bk", $x + 70, $y + 45, -1, -1)
+				$txtTip = "Enable this so that when King is healing bot will use new search conditions for Live Bases"
+				GUICtrlSetTip(-1, $txtTip)
+				GUICtrlSetState(-1, $GUI_HIDE)
+			$grpLiveBaseConditionsQueen = GUICtrlCreateGroup("Queen Filter", $x - 20, $y + 110, 225, 125)
+			GUICtrlSetState (-1, $GUI_HIDE)
+			GUICtrlCreatePic (@ScriptDir & "\Icons\QueenAbility.jpg", $x, $y + 125, 60, 94)
+			GUICtrlSetState (-1, $GUI_HIDE)
+			$chkLBAQFilter = GUICtrlCreateCheckbox("Enable For Aq", $x + 70, $y + 165, -1, -1)
+				$txtTip = "Enable this so that when Queen is healing bot will use new search conditions for Live Bases"
+				GUICtrlSetTip(-1, $txtTip)
+				GUICtrlSetState(-1, $GUI_HIDE)
+
+		Local $x = 260, $y = 210
+			;Hero Heal Feature.
+				$grpLiveBaseConditionsHero = GUICtrlCreateGroup("LiveBase No Hero Filter Conditions", $x - 20, $y - 20, 220, 255)
+				$y += 21
+				$cmbABMeetGEHero = GUICtrlCreateCombo("", $x , $y + 10, 65, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+					$txtTip = "Search for a base that meets the values set for Min. Gold, Elixir."
+					GUICtrlSetData(-1, "G And E|G Or E|G + E", "G + E")
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetOnEvent(-1, "cmbABGoldElixirHero")
+				$txtABMinGoldHero = GUICtrlCreateInput("80000", $x + 80, $y, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+					$txtTip = "Set the Min. amount of Gold to search for on a village to attack."
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetLimit(-1, 6)
+					GUICtrlSetState (-1, $GUI_HIDE)
+				$picABMinGoldHero = GUICtrlCreateIcon($pIconLib, $eIcnGold, $x + 131, $y, 16, 16)
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetState (-1, $GUI_HIDE)
+				$y += 21
+				$txtABMinElixirHero = GUICtrlCreateInput("80000", $x + 80, $y, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+					$txtTip = "Set the Min. amount of Elixir to search for on a village to attack."
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetLimit(-1, 6)
+					GUICtrlSetState (-1, $GUI_HIDE)
+				$picABMinElixirHero = GUICtrlCreateIcon($pIconLib, $eIcnElixir, $x + 131, $y, 16, 16)
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetState (-1, $GUI_HIDE)
+				$y -= 11
+				$txtABMinGoldPlusElixirHero = GUICtrlCreateInput("160000", $x + 80, $y, 50, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+					$txtTip = "Set the Min. amount of Gold + Elixir to search for on a village to attack."
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetLimit(-1, 6)
+				$picABMinGPEGoldHero = GUICtrlCreateIcon($pIconLib, $eIcnGold, $x + 131, $y + 1, 16, 16)
+					GUICtrlSetTip(-1, $txtTip)
+				$lblABMinGPEHero = GUICtrlCreateLabel("+", $x + 147, $y + 1, -1, -1)
+					GUICtrlSetTip(-1, $txtTip)
+				$picABMinGPEElixirHero = GUICtrlCreateIcon($pIconLib, $eIcnElixir, $x + 153, $y + 1, 16, 16)
+					GUICtrlSetTip(-1, $txtTip)
+				$y += 31
+				$chkABMeetDEHero = GUICtrlCreateCheckbox("Dark Elixir", $x , $y, -1, -1)
+					$txtTip = "Search for a base that meets the value set for Min. Dark Elixir."
+					GUICtrlSetOnEvent(-1, "chkABMeetDEHero")
+					GUICtrlSetTip(-1, $txtTip)
+				$txtABMinDarkElixirHero = GUICtrlCreateInput("0", $x + 80, $y, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+					$txtTip = "Set the Min. amount of Dark Elixir to search for on a village to attack."
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetLimit(-1, 5)
+					_GUICtrlEdit_SetReadOnly(-1, True)
+				$picABMinDarkElixirHero = GUICtrlCreateIcon($pIconLib, $eIcnDark, $x + 131, $y, 16, 16)
+					GUICtrlSetTip(-1, $txtTip)
+				$y += 21
+				$chkABMeetTrophyHero = GUICtrlCreateCheckbox("Trophies", $x, $y, -1, -1)
+					$txtTip = "Search for a base that meets the value set for Min. Trophies."
+					GUICtrlSetOnEvent(-1, "chkABMeetTrophyHero")
+					GUICtrlSetTip(-1, $txtTip)
+				$txtABMinTrophyHero = GUICtrlCreateInput("0", $x + 80, $y, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+					$txtTip = "Set the Min. amount of Trophies to search for on a village to attack."
+					GUICtrlSetTip(-1, $txtTip)
+					_GUICtrlEdit_SetReadOnly(-1, True)
+					GUICtrlSetLimit(-1, 2)
+				$picABMinTrophiesHero = GUICtrlCreateIcon($pIconLib, $eIcnTrophy, $x + 131, $y, 16, 16)
+					GUICtrlSetTip(-1, $txtTip)
+				$y += 21
+				$chkABMeetTHHero = GUICtrlCreateCheckbox("Townhall", $x, $y, -1, -1)
+					$txtTip = "Search for a base that meets the value set for Max. Townhall Level."
+					GUICtrlSetOnEvent(-1, "chkABMeetTHHero")
+					GUICtrlSetTip(-1, $txtTip)
+				$cmbABTHHero = GUICtrlCreateCombo("", $x + 80, $y - 1, 50, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+					$txtTip = "Set the Max. level of the Townhall to search for on a village to attack."
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetState(-1, $GUI_DISABLE)
+					GUICtrlSetData(-1, "4-6|7|8|9|10", "4-6")
+				$picABMaxTH1Hero = GUICtrlCreateIcon($pIconLib, $eIcnTH1, $x + 131, $y - 3, 24, 24)
+					GUICtrlSetTip(-1, $txtTip)
+				$lblABMaxTHHero = GUICtrlCreateLabel("-", $x + 156, $y + 1, -1, -1)
+					GUICtrlSetTip(-1, $txtTip)
+				$picABMaxTH10Hero = GUICtrlCreateIcon($pIconLib, $eIcnTH10, $x + 160, $y - 3, 24, 24)
+					GUICtrlSetTip(-1, $txtTip)
+				$y += 21
+				$chkABMeetTHOHero = GUICtrlCreateCheckbox("Townhall Outside", $x, $y, -1, -1)
+					$txtTip = "Search for a base that has an exposed Townhall. (Outside of Walls)"
+					GUICtrlSetTip(-1, $txtTip)
+				$y += 21
+				$chkABWeakBaseHero = GUICtrlCreateCheckbox("WeakBase", $x, $y, -1, -1)
+					$txtTip = "Search for a base that has low defences."
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetOnEvent(-1, "chkABWeakBaseHero")
+				$cmbABWeakMortarHero = GUICtrlCreateCombo("", $x + 80, $y, 50, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+					$txtTip = "Set the Max. level of the Mortar to search for on a village to attack."
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetData(-1, "-|Lvl 1|Lvl 2|Lvl 3|Lvl 4|Lvl 5|Lvl 6|Lvl 7|Lvl 8", "Lvl 5")
+					GUICtrlSetState(-1, $GUI_DISABLE)
+				$picABWeakMortarHero = GUICtrlCreateIcon($pIconLib, $eIcnMortar, $x + 131, $y - 3, 24, 24)
+					GUICtrlSetTip(-1, $txtTip)
+				$y +=23
+				$cmbABWeakWizTowerHero = GUICtrlCreateCombo("", $x + 80, $y, 50, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+					$txtTip = "Set the Max. level of the Wizard Tower to search for on a village to attack."
+					GUICtrlSetTip(-1, $txtTip)
+					GUICtrlSetData(-1, "-|Lvl 1|Lvl 2|Lvl 3|Lvl 4|Lvl 5|Lvl 6|Lvl 7|Lvl 8", "Lvl 4")
+					GUICtrlSetState(-1, $GUI_DISABLE)
+				$picABWeakWizTowerHero = GUICtrlCreateIcon($pIconLib, $eIcnWizTower, $x + 131, $y - 2, 24, 24)
+					GUICtrlSetTip(-1, $txtTip)
+				$y += 30
+				$chkABMeetOneHero = GUICtrlCreateCheckbox("Meet One Then Attack", $x, $y, -1, -1)
+					$txtTip = "Just meet only ONE of the above conditions, then Attack."
+					GUICtrlSetTip(-1, $txtTip)
+				For $i = $grpLiveBaseConditionsKing To $chkABMeetOne
+					GUICtrlSetState($i, $GUI_HIDE)
+				Next
+			GUICtrlCreateGroup("", -99, -99, 1, 1)
 GUICtrlCreateTabItem("")
+
+

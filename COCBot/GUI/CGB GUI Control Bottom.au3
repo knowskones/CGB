@@ -165,6 +165,7 @@ EndFunc   ;==>chkBackground
 Func btnStart()
 	If $RunState = False Then
 		$RunState = True
+		hidenormal()
 		GUICtrlSetState($btnStart, $GUI_HIDE)
 		GUICtrlSetState($btnStop, $GUI_SHOW)
 		GUICtrlSetState($btnPause, $GUI_SHOW)
@@ -176,7 +177,6 @@ Func btnStart()
 		$MeetCondStop = False
 		CreateLogFile()
 		CreateAttackLogFile()
-
 		SaveConfig()
 		readConfig()
 		applyConfig()

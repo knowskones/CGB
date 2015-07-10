@@ -183,6 +183,16 @@ Local $x = 30, $y = 205
 			$txtTip = "Relocate your Laboratory."
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "btnLab")
+		$btnLocateKing = GUICtrlCreateButton("King", $x + 230, $y, 40, 40, $BS_ICON)
+            GUICtrlSetOnEvent(-1, "LocateKing")
+            GUICtrlSetImage (-1, $LibDir & "\CGBBOT.dll", 7, 1)
+            $txtTip = "Locate Your King."
+            GUICtrlSetTip(-1, $txtTip)
+		$btnLocateQueen = GUICtrlCreateButton("Queen", $x + 270, $y, 40, 40, $BS_ICON)
+            GUICtrlSetOnEvent(-1, "LocateQueen")
+            GUICtrlSetImage (-1, $LibDir & "\CGBBOT.dll", 41, 1)
+            $txtTip = "Locate Your Queen."
+            GUICtrlSetTip(-1, $txtTip)
 		GUICtrlCreateGroup("", -99, -99, 1, 1)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 GUICtrlCreateTabItem("")

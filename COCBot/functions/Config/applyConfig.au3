@@ -196,6 +196,72 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	_GUICtrlComboBox_SetCurSel($cmbABWeakMortar, $iCmbWeakMortar[$LB])
 	_GUICtrlComboBox_SetCurSel($cmbABWeakWizTower, $iCmbWeakWizTower[$LB])
 
+	;Hero Filters
+	_GUICtrlComboBox_SetCurSel($cmbABMeetGEHero, $iCmbMeetGEHero)
+
+	If $iChkMeetDEHero = 1 Then
+		GUICtrlSetState($chkABMeetDEHero, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkABMeetDEHero, $GUI_UNCHECKED)
+	EndIf
+	chkABMeetDEHero()
+
+	If $iChkMeetTrophyHero = 1 Then
+		GUICtrlSetState($chkABMeetTrophyHero, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkABMeetTrophyHero, $GUI_UNCHECKED)
+	EndIf
+	chkABMeetTrophyHero()
+
+	If $iChkMeetTHHero = 1 Then
+		GUICtrlSetState($chkABMeetTHHero, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkABMeetTHHero, $GUI_UNCHECKED)
+	EndIf
+	chkABMeetTHHero()
+
+	If $iChkMeetTHO[$LB] = 1 Then
+		GUICtrlSetState($chkABMeetTHOHero, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkABMeetTHOHero, $GUI_UNCHECKED)
+	EndIf
+
+	If $iChkWeakBaseHero = 1 Then
+		GUICtrlSetState($chkABWeakBaseHero, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkABWeakBaseHero, $GUI_UNCHECKED)
+	EndIf
+	chkABWeakBaseHero()
+
+	If $iChkMeetOneHero = 1 Then
+		GUICtrlSetState($chkABMeetOneHero, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkABMeetOneHero, $GUI_UNCHECKED)
+	EndIf
+
+	GUICtrlSetData($txtABMinGoldHero, $iMinGoldHero)
+	GUICtrlSetData($txtABMinElixirHero, $iMinElixirHero)
+	GUICtrlSetData($txtABMinGoldPlusElixirHero, $iMinGoldPlusElixirHero)
+	GUICtrlSetData($txtABMinDarkElixirHero, $iMinDarkHero)
+	GUICtrlSetData($txtABMinTrophyHero, $iMinTrophyHero)
+
+	_GUICtrlComboBox_SetCurSel($cmbABTHHero, $iCmbTHHero)
+	$iMaxTHHero = $THText[$iCmbTHHero]
+	_GUICtrlComboBox_SetCurSel($cmbABWeakMortarHero, $iCmbWeakMortarHero)
+	_GUICtrlComboBox_SetCurSel($cmbABWeakWizTowerHero, $iCmbWeakWizTowerHero)
+
+	If $LBBKFilter = 1 Then
+		GUICtrlSetState($chkLBBKFilter, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkLBBKFilter, $GUI_UNCHECKED)
+	EndIf
+	If $LBAQFilter = 1 Then
+		GUICtrlSetState($chkLBAQFilter, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkLBAQFilter, $GUI_UNCHECKED)
+	EndIf
+
+
 	If $iChkSearchReduction = 1 Then
 		GUICtrlSetState($chkSearchReduction, $GUI_CHECKED)
 	Else
@@ -477,14 +543,45 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 		GUICtrlSetState($chkEndTwoStars, $GUI_UNCHECKED)
 	EndIf
 
-
-
 	If $ichkEndNoResources = 1 Then
 		GUICtrlSetState($chkEndNoResources, $GUI_CHECKED)
 	Else
 		GUICtrlSetState($chkEndNoResources, $GUI_UNCHECKED)
 	EndIf
 
+
+
+	If $DESideEB = 1 Then
+		GUICtrlSetState($chkDESideEB, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkDESideEB, $GUI_UNCHECKED)
+	EndIf
+	chkDESideEB()
+	GUICtrlSetData($txtDELowEndMin, $DELowEndMin)
+
+	If $DisableOtherEBO = 1 Then
+		GUICtrlSetState($chkDisableOtherEBO, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkDisableOtherEBO, $GUI_UNCHECKED)
+	EndIf
+
+	If $DEEndOneStar = 1 Then
+		GUICtrlSetState($chkDEEndOneStar, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkDEEndOneStar, $GUI_UNCHECKED)
+	EndIf
+
+	If $DEEndBk = 1 Then
+		GUICtrlSetState($chkDEEndBk, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkDEEndBk, $GUI_UNCHECKED)
+	EndIf
+
+	If $DEEndAq = 1 Then
+		GUICtrlSetState($chkDEEndAq, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkDEEndAq, $GUI_UNCHECKED)
+	EndIf
 
 	;Donate Settings-------------------------------------------------------------------------
 	If $ichkRequest = 1 Then

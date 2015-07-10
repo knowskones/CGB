@@ -22,7 +22,7 @@ Func GoldElixirChangeEBO()
 	Local $Trophies
 	Local $txtDiff
 	Local $exitOneStar = 0, $exitTwoStars = 0
-
+	$DarkLow = 0
 	;READ RESOURCES n.1
 	$Gold1 = getGoldVillageSearch(48, 68)
 	$Elixir1 = getElixirVillageSearch(48, 68 + 28)
@@ -35,7 +35,7 @@ Func GoldElixirChangeEBO()
 		$Trophies = getTrophyVillageSearch(48, 138)
 	EndIf
 
-	;CALCULATE WITCH TIMER TO USE
+	;CALCULATE WHICH TIMER TO USE
 	Local $iBegin = TimerInit(), $x = $sTimeStopAtk * 1000, $y = $sTimeStopAtk2 * 1000, $z
 	If Number($Gold1) < Number($stxtMinGoldStopAtk2) And Number($Elixir1) < Number($stxtMinElixirStopAtk2) And Number($DarkElixir1) < Number($stxtMinDarkElixirStopAtk2) And $iChkTimeStopAtk2 = 1 Then
 		$z = $y
@@ -69,9 +69,15 @@ Func GoldElixirChangeEBO()
 
 	;MAIN LOOP
 	While TimerDiff($iBegin) < $z
-		;HEALT HEROES
+		;HEALTH HEROES
 		CheckHeroesHealth()
-		If $checkKPower Or $checkQPower Then
+
+		;DE SPECIAL END EARLY
+		If $iMatchMode = $LB And $iChkDeploySettings[$LB] = 4 And $DESideEB Then
+			If $dropQueen Or $dropKing Then DELow()
+			If $DarkLow = 1 Then ExitLoop
+		EndIf
+		If $checkKPower Or $checkQPower Or $DarkLow = 2 Then
 			If _Sleep(500) Then Return
 		Else
 			If _Sleep(1000) Then Return
@@ -142,6 +148,12 @@ Func GoldElixirChangeEBO()
 		EndIf
 
 	WEnd ; END MAIN LOOP
+
+	;Priority Check... Exit To protect Hero Health
+	If $iMatchMode = $LB And $iChkDeploySettings[$LB] = 4 And $DESideEB And $DarkLow = 1 Then
+		SetLog("Returning Now -DE-", $COLOR_GREEN)
+		Return False
+	EndIf
 
 	;FIRST CHECK... EXIT FOR ONE STAR REACH
 	If $ichkEndOneStar = 1 And $exitOneStar = 1 Then

@@ -18,6 +18,7 @@
 #include "functions\Config\saveConfig.au3"
 #include "functions\Config\ScreenCoordinates.au3"
 
+#include "functions\Attack\DESide.au3"
 #include "functions\Attack\AttackReport.au3"
 #include "functions\Attack\CheckHeroesHealth.au3"
 #include "functions\Attack\dropCC.au3"
@@ -131,6 +132,7 @@
 #include "functions\Search\VillageSearch.au3"
 #include "functions\Search\CheckZoomOut.au3"
 #include "functions\Search\SearchTownHallloc.au3"
+#include "functions\Search\CheckHeroAvailable.au3"
 
 #include "functions\Village\BoostBarracks.au3"
 #include "functions\Village\BotDetectFirstTime.au3"

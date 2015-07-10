@@ -53,7 +53,7 @@ $tabTroops = GUICtrlCreateTabItem("Troops")
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 	$y = 230
-	$grpBoosterOptions = GUICtrlCreateGroup("Boost Options", $x - 20, $y - 20, 223, 95)
+	$grpBoosterOptions = GUICtrlCreateGroup("Boost Options", $x - 20, $y - 20, 223, 115)
 	$y -= 5
 		GUICtrlCreateIcon ($pIconLib, $eIcnTroops, $x, $y + 2, 16, 16)
 	$lblFullTroop = GUICtrlCreateLabel("Raid when Troops reach:",$x + 25, $y + 5, -1, 17)
@@ -77,6 +77,13 @@ $tabTroops = GUICtrlCreateTabItem("Troops")
 	$cmbBoostSpellFactory = GUICtrlCreateCombo("", $x + 150, $y, 35, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 		GUICtrlSetData(-1, "0|1|2|3|4|5", "0")
 		GUICtrlSetTip(-1, $txtTip)
+	$y += 25
+	GUICtrlCreateIcon($pIconLib, $eIcnKing, $x, $y, 16, 16)
+	GUICtrlCreateIcon($pIconLib, $eIcnQueen, $x + 17, $y, 16, 16)
+	$chkBoostKing = GUICtrlCreateCheckbox("Boost King", $x + 40, $y , 75, 17)
+            GUICtrlSetTip(-1, "Boost your King so he is always available for raids.")
+	$chkBoostQueen = GUICtrlCreateCheckbox("Boost Queen", $x + 115, $y, 80, 17)
+            GUICtrlSetTip(-1, "Boost your Queen so she is always available for raids")
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 	Local $x = 30, $y = 210
@@ -158,8 +165,8 @@ $tabTroops = GUICtrlCreateTabItem("Troops")
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 	$x +=  227
-	$y = 330
-	$grpDarkTroops = GUICtrlCreateGroup("Add. Dark Troops", $x - 20, $y - 20, 223, 195)
+	$y = 350
+	$grpDarkTroops = GUICtrlCreateGroup("Add. Dark Troops", $x - 20, $y - 20, 223, 175)
 		GUICtrlCreateIcon ($pIconLib, $eIcnMinion, $x - 5, $y - 5, 24, 24)
 		$lblMinion = GUICtrlCreateLabel("No. of Minions:", $x + 25, $y, -1, -1)
 		$txtNumMini = GUICtrlCreateInput("0", $x + 130, $y - 5, 55, -1, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))

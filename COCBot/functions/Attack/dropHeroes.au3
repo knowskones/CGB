@@ -3,8 +3,8 @@
 
 Func dropHeroes($x, $y, $KingSlot = -1, $QueenSlot = -1) ;Drops for king and queen
 	If _Sleep(300) Then Return
-	Local $dropKing = False
-	Local $dropQueen = False
+	$dropKing = False
+	$dropQueen = False
 	If $KingSlot <> -1 And (($iMatchMode <> $DB And $iMatchMode <> $LB) Or $KingAttack[$iMatchMode] = 1) Then
 		$dropKing = True
 	EndIf

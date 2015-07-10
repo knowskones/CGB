@@ -17,7 +17,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 	$iSkipped = 0
 
 	If $Is_ClientSyncError = False Then
-		For $i = 0 to $iModeCount - 1
+		For $i = 0 To $iModeCount - 1
 			$iAimGold[$i] = $iMinGold[$i]
 			$iAimElixir[$i] = $iMinElixir[$i]
 			$iAimGoldPlusElixir[$i] = $iMinGoldPlusElixir[$i]
@@ -29,11 +29,16 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 	_WinAPI_EmptyWorkingSet(WinGetProcess($Title))
 
 	If _Sleep(1000) Then Return
-
-;	; Check Break Shield button again
-;	If _CheckPixel($aBreakShield, $bCapturePixel) Then
-;		ClickP($aBreakShield, 1, 0, "#0154");Click Okay To Break Shield
-;	EndIf
+	If $LBHeroFilter = 1 Then
+		RevertRoyalFilter()
+	EndIf
+	If $iCmbSearchMode > 0 and ($LBAQFilter = 1 Or $LBBKFilter = 1) Then
+		LiveRoyalFilter()
+	EndIf
+	;	; Check Break Shield button again
+	;	If _CheckPixel($aBreakShield, $bCapturePixel) Then
+	;		ClickP($aBreakShield, 1, 0, "#0154");Click Okay To Break Shield
+	;	EndIf
 
 	For $x = 0 To $iModeCount - 1
 		If $x = $DB And $iCmbSearchMode = 1 Then ContinueLoop
@@ -146,8 +151,8 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 		ElseIf $iCmbSearchMode = 1 Then
 			$matchLB = CompareResources($LB, $isWeakBase[$LB])
 		Else
-			If IsSearchModeActive($DB) Then $matchDB = CompareResources($DB, $isWeakBase)
-			If IsSearchModeActive($LB) Then $matchLB = CompareResources($LB, $isWeakBase)
+			If IsSearchModeActive($DB) Then $matchDB = CompareResources($DB, $isWeakBase[$DB])
+			If IsSearchModeActive($LB) Then $matchLB = CompareResources($LB, $isWeakBase[$LB])
 		EndIf
 		If $matchDB Or $matchLB Then
 			$dbBase = checkDeadBase()
@@ -178,12 +183,12 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			EndIf
 		EndIf
 		If $bBtnAttackNowPressed = True Then ExitLoop
-		Click(825, 527,1,0,"#0155") ;Click Next
+		Click(825, 527, 1, 0, "#0155") ;Click Next
 		If _Sleep(500) Then Return
 		If isGemOpen(True) = True Then
 			Setlog(" Not enough gold to keep searching.....", $COLOR_RED)
-			Click(585, 252,1,0,"#0156")  ; Click close gem window "X"
-			$OutOfGold = 1  ; Set flag for out of gold to search for attack
+			Click(585, 252, 1, 0, "#0156") ; Click close gem window "X"
+			$OutOfGold = 1 ; Set flag for out of gold to search for attack
 			Return
 		EndIf
 		$iSkipped = $iSkipped + 1
@@ -240,4 +245,4 @@ Func IsSearchModeActive($pMode)
 	If $iChkEnableAfter[$pMode] = 0 Then Return True
 	If $SearchCount >= $iEnableAfterCount[$pMode] Then Return True
 	Return False
-EndFunc
+EndFunc   ;==>IsSearchModeActive

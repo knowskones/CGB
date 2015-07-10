@@ -18,7 +18,7 @@
 ;~ -------------------------------------------------------------
 $tabEndBattle = GUICtrlCreateTabItem("End Battle")
    Local $x = 30, $y = 150
-	$grpBattleOptions = GUICtrlCreateGroup("End Battle", $x - 20, $y - 20, 450, 170)
+	$grpBattleOptions = GUICtrlCreateGroup("End Battle", $x - 20, $y - 20, 450, 200)
 		$chkTimeStopAtk = GUICtrlCreateCheckbox("When no New loot raided within:",$x, $y, -1, -1)
 			$txtTip = "End Battle if there is no extra loot raided within this No. of seconds." & @CRLF & "Countdown is started after all Troops and Royals are deployed in battle."
 			GUICtrlSetTip(-1, $txtTip)
@@ -29,7 +29,7 @@ $tabEndBattle = GUICtrlCreateTabItem("End Battle")
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetLimit(-1, 2)
 		$lblTimeStopAtk = GUICtrlCreateLabel("sec.", $x + 215, $y + 3, -1, -1)
-   $y += 25
+   $y += 20
 		$chkTimeStopAtk2 = GUICtrlCreateCheckbox("When no New loot raided within:",$x, $y, -1, -1)
 			$txtTip = "End Battle if there is no extra loot raided within this No. of seconds." & @CRLF & "Countdown is started after all Troops and Royals are deployed in battle."
 			GUICtrlSetTip(-1, $txtTip)
@@ -70,16 +70,16 @@ $tabEndBattle = GUICtrlCreateTabItem("End Battle")
 			GUICtrlSetState(-1, $GUI_DISABLE)
 		$txtMinDarkElixirStopAtk2 = GUICtrlCreateInput("50", $x + 350, $y , 40, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 			GUICtrlSetTip(-1, $txtTip)
-			GUICtrlSetLimit(-1, 5)
+			GUICtrlSetLimit(-1, 4)
 			GUICtrlSetState(-1, $GUI_DISABLE)
 		$picMinDarkElixirStopAtk2 = GUICtrlCreateIcon($pIconLib, $eIcnDark, $x + 392, $y, 16, 16)
 			GUICtrlSetTip(-1, $txtTip)
-	$y += 20
+	$y += 15
 		$chkEndNoResources = GUICtrlCreateCheckbox("When no Resources left", $x , $y , -1, -1)
 			$txtTip = "End Battle when all Gold, Elixir and Dark Elixir = 0"
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_ENABLE)
-	$y += 30
+	$y += 20
 		$chkEndOneStar = GUICtrlCreateCheckbox("When One Star is won:", $x, $y , -1, -1)
 			$txtTip = "Will End the Battle if 1 star is won in battle"
 			GUICtrlSetTip(-1, $txtTip)
@@ -93,9 +93,51 @@ $tabEndBattle = GUICtrlCreateTabItem("End Battle")
 			GUICtrlSetState(-1, $GUI_ENABLE)
 		$picEndTwoStar = GUICtrlCreateIcon($pIconLib, $eIcnSilverStar, $x + 145, $y + 2, 16, 16)
 		$picEndTwoStar2 = GUICtrlCreateIcon($pIconLib, $eIcnSilverStar, $x + 162, $y + 2, 16, 16)
+	$y += 25
+		GUICtrlCreateLabel("Dark Elixir Side End Battle Options:", $x , $y , -1, -1)
+			$txtTip = "Enable by selecting de side attack in LiveBase Deploy - Attack On: options"
+			GUICtrlSetTip(-1, $txtTip)
+	$y += 15
+		$chkDESideEB = GUICtrlCreateCheckbox("When below: <", $x , $y , -1, -1)
+			$txtTip = "Enables Special conditions for Dark Elixir side attack." & @CRLF & "If no additional filters are selected will end battle when below Total Dark Elixir Percent."
+			GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetState(-1, $GUI_DISABLE)
+			GUICtrlSetOnEvent(-1, "chkDESideEB")
+		$txtDELowEndMin = GUICtrlCreateInput("25", $x + 92, $y , 40, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetLimit(-1, 2)
+			GUICtrlSetState(-1, $GUI_DISABLE)
+		$lblDELowEndMin = GUICtrlCreateLabel("%", $x + 136 , $y + 2 , -1, -1)
+		GUICtrlCreateIcon($pIconLib, $eIcnDark, $x + 147, $y, 16, 16)
+			GUICtrlSetTip(-1, $txtTip)
+		$chkDisableOtherEBO = GUICtrlCreateCheckbox("Disable Normal End Battle Options:", $x +200 , $y , -1, -1)
+			$txtTip = "Disable Normal End Battle Options when de side attack is found"
+			GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetState(-1, $GUI_DISABLE)
+	$y += 20
+		$chkDEEndOneStar = GUICtrlCreateCheckbox("When One Star is won", $x, $y , -1, -1)
+			$txtTip = "Will End the Battle when below min DE and One Star is won"
+			GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetState(-1, $GUI_DISABLE)
+		GUICtrlCreateIcon($pIconLib, $eIcnSilverStar, $x + 126, $y + 2, 16, 16)
+			GUICtrlSetTip(-1, $txtTip)
+	$x += 144
+		$chkDEEndBk = GUICtrlCreateCheckbox("When BK Health Low", $x, $y , -1, -1)
+			$txtTip = "Will End the Battle when below min DE and BK Health is Low"
+			GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetState(-1, $GUI_DISABLE)
+		GUICtrlCreateIcon($pIconLib, $eIcnKing, $x + 123, $y + 2, 16, 16)
+			GUICtrlSetTip(-1, $txtTip)
+	$x += 143
+		$chkDEEndAq = GUICtrlCreateCheckbox("When AQ Health Low", $x, $y , -1, -1)
+			$txtTip = "Will End the Battle when below min DE and AQ Health is Low"
+			GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetState(-1, $GUI_DISABLE)
+		GUICtrlCreateIcon($pIconLib, $eIcnQueen, $x + 124, $y + 2, 16, 16)
+			GUICtrlSetTip(-1, $txtTip)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
-	Local $x = 30, $y = 325
+Local $x = 30, $y = 355
 	$grpLootSnapshot = GUICtrlCreateGroup("Loot Snapshot", $x - 20, $y - 20, 450, 50)
 		$chkTakeLootSS = GUICtrlCreateCheckbox("Take Loot Snapshot", $x, $y, -1, -1)
 			GUICtrlSetTip(-1, "Check this if you want to save a Loot snapshot of the Village that was attacked.")
@@ -104,8 +146,8 @@ $tabEndBattle = GUICtrlCreateTabItem("End Battle")
 			GUICtrlSetTip(-1, "Include loot info in the screenshot filename")
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
-Local $x = 30, $y = 380
-	$grpResources = GUICtrlCreateGroup("Share Attack Replays", $x - 20, $y - 20, 450, 145)
+Local $x = 30, $y = 410
+	$grpResources = GUICtrlCreateGroup("Share Attack Replays", $x - 20, $y - 20, 450, 115)
 			GUICtrlSetState(-1, $GUI_DISABLE)
 		$chkShareAttack = GUICtrlCreateCheckbox("Share a Replay in your clan's chat.", $x, $y, -1, -1)
 			$TxtTip = "Check this to share your battle replay in the clan chat."
@@ -138,14 +180,13 @@ Local $x = 30, $y = 380
 			GUICtrlSetLimit(-1, 5)
 			GUICtrlSetState(-1, $GUI_DISABLE)
 		$picShareLootDarkElixir = GUICtrlCreateIcon($pIconLib, $eIcnDark, $x + 182, $y, 16, 16)
-	Local $x = 240, $y = 380
+	Local $x = 240, $y = 410
 		$lblShareMessage = GUICtrlCreateLabel("Use a random message from this list:", $x , $y -2 , -1, -1)
 			GUICtrlSetState(-1, $GUI_DISABLE)
 	    $y += 27
-		$txtShareMessage = GUICtrlCreateEdit("", $x, $y - 10 , 205, 80, BitOR($ES_WANTRETURN, $ES_CENTER, $ES_AUTOVSCROLL))
+		$txtShareMessage = GUICtrlCreateEdit("", $x, $y - 10 , 205, 72, BitOR($ES_WANTRETURN, $ES_CENTER, $ES_AUTOVSCROLL))
 			GUICtrlSetData(-1, StringFormat("Nice!\r\nGood :-)\r\nThanks! \r\nWowwww!"))
 			GUICtrlSetState(-1, $GUI_DISABLE)
 			GUICtrlSetTip(-1, "Message to send with the Share Replay")
-	    $y += 73
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 GUICtrlCreateTabItem("")
