@@ -162,9 +162,18 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			$iMatchMode = $DB
 			ExitLoop
 		ElseIf $matchLB And Not $dbBase Then
-			SetLog(_PadStringCenter(" Live Base Found! ", 50, "~"), $COLOR_GREEN)
-			$iMatchMode = $LB
-			ExitLoop
+			If $LBHeroFilter = 1 And $iChkDeploySettings[$LB] = 4 Then
+				DExy()
+				If $DESLoc <> 0 Then
+					SetLog(_PadStringCenter(" Live Base Found! ", 50, "~"), $COLOR_GREEN)
+					$iMatchMode = $LB
+					ExitLoop
+				EndIf
+			Else
+				SetLog(_PadStringCenter(" Live Base Found! ", 50, "~"), $COLOR_GREEN)
+				$iMatchMode = $LB
+				ExitLoop
+			EndIf
 		ElseIf $matchLB Or $matchDB Then
 			If $OptBullyMode = 1 And ($SearchCount >= $ATBullyMode) Then
 				If $SearchTHLResult = 1 Then
