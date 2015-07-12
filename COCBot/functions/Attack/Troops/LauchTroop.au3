@@ -195,7 +195,7 @@ Func LaunchTroop2($listInfoDeploy, $CC, $King, $Queen)
 		Next
 	Else
 		For $i = 0 To UBound($listInfoDeploy) - 1
-			If (IsString($listInfoDeploy[$i][0]) And ($listInfoDeploy[$i][0] = "CC" Or $listInfoDeploy[$i][0] = "HEROES")) Then
+			If (IsString($listInfoDeploy[$i][0]) And ($listInfoDeploy[$i][0] = "CC" Or $listInfoDeploy[$i][0] = "HEROES" Or $listInfoDeploy[$i][0] = "SPELL")) Then
 				If $iMatchMode = $LB And $iChkDeploySettings[$LB] = 4 Then
 					Local $RandomEdge = $Edges[$DEEdge]
 					Local $RandomXY = 2
@@ -207,6 +207,16 @@ Func LaunchTroop2($listInfoDeploy, $CC, $King, $Queen)
 					dropCC($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], $CC)
 				ElseIf ($listInfoDeploy[$i][0] = "HEROES") Then
 					dropHeroes($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], $King, $Queen)
+				ElseIf ($listInfoDeploy[$i][0] = "SPELL") Then
+					If $iChkDEUseSpell = 1 Then
+						If $iChkDEUseSpellType = 0 Then
+							local $spell = $eHSpell
+						ElseIf $iChkDEUseSpellType = 1 Then
+							local $spell = $eRSpell
+						EndIf
+						DESpellDP()
+						dropSpell($SpellDP[0], $SpellDP[1], $spell)
+					EndIf
 				EndIf
 			Else
 				If LauchTroop($listInfoDeploy[$i][0], $listInfoDeploy[$i][1], $listInfoDeploy[$i][2], $listInfoDeploy[$i][3], $listInfoDeploy[$i][4]) Then

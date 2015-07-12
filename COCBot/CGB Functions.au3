@@ -23,6 +23,7 @@
 #include "functions\Attack\CheckHeroesHealth.au3"
 #include "functions\Attack\dropCC.au3"
 #include "functions\Attack\dropHeroes.au3"
+#include "functions\Attack\dropSpell.au3"
 #include "functions\Attack\GoldElixirChange.au3"
 #include "functions\Attack\GoldElixirChangeEBO.au3"
 #include "functions\Attack\PrepareAttack.au3"

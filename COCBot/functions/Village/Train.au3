@@ -710,7 +710,7 @@ Func Train()
 	EndIf
 
 
-	If $iChkLightSpell = 1 Then
+	If $iChkLightSpell = 1 or $iChkDEUseSpell = 1 Then
 		$iBarrHere = 0
 		While Not isSpellFactory()
 			If IsArray($PrevPos) Then Click($PrevPos[0], $PrevPos[1], 1, 0, "#0323") ;click prev button
@@ -721,32 +721,41 @@ Func Train()
 
 		If isSpellFactory() Then
 			Local $x = 0
-			While 1
-				_CaptureRegion()
-				If _sleep(500) Then Return
-				If _ColorCheck(_GetPixelColor(237, 354, True), Hex(0xFFFFFF, 6), 20) = False Then
-					setlog("Not enough Elixir to create Spell", $COLOR_RED)
-					ExitLoop
-				ElseIf _ColorCheck(_GetPixelColor(200, 346, True), Hex(0x1A1A1A, 6), 20) Then
-					setlog("Spell Factory Full", $COLOR_RED)
-					ExitLoop
-				Else
-					GemClick(252, 354, 1, 20, "#0290")
-					$x = $x + 1
-				EndIf
+			local $Spellslot = -1
+			If $iChkLightSpell = 1 Then
+				$Spellslot = 0
+			ElseIf $iChkDEUseSpell = 1 Then
+				$Spellslot = $iChkDEUseSpellType + 1
+				; only work on Heal Spell for now, until the Healing and Rage Spell is correctly detected
+				$Spellslot = 1
+			EndIf
+			If $Spellslot <> -1 Then
+				While 1
+					_CaptureRegion()
+					If _sleep(500) Then Return
+					; FixME: what is the detection for Not enough Elixir
+					;If _ColorCheck(_GetPixelColor(237, 354, True), Hex(0x8A8A8A, 6), 20) =  Then
+					;	setlog("Not enough Elixir to create Spell", $COLOR_RED)
+					;	ExitLoop
+					If _ColorCheck(_GetPixelColor(200, 346, True), Hex(0x414141, 6), 20) Then
+						setlog("Spell Factory Full", $COLOR_RED)
+						ExitLoop
+					Else
+						GemClick(252 + ($Spellslot * 105), 354, 1, 20, "#0290")
+						$x = $x + 1
+					EndIf
+					If $x = 5 Then
+						ExitLoop
+					EndIf
+				WEnd
 				If $x = 5 Then
-					ExitLoop
+				Else
+					SetLog("Created " & $x & " Spell(s)", $COLOR_BLUE)
 				EndIf
-			WEnd
-			If $x = 0 Then
-			Else
-				SetLog("Created " & $x & " Lightning Spell(s)", $COLOR_BLUE)
 			EndIf
 		Else
 			SetLog("Spell Factory not found...", $COLOR_BLUE)
 		EndIf
-	Else
-
 	EndIf ; End Spell Factory
 
 	If _Sleep(200) Then Return

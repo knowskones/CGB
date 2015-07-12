@@ -121,3 +121,5 @@ Global Const $GemGole[4]   = [ 559, 378, 0xE70A12, 30]
 Global Const $GemWitc[4]   = [ 666, 372, 0xE70A12, 30]
 
 Global Const $GemLava[4]   = [ 239, 372, 0xE70A12, 30]
+
+Global Const $MapCenter[2] = [430, 313] ; Map center location
