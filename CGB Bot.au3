@@ -170,7 +170,7 @@ Func runBot() ;Bot that runs everything in order
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
 			If $Restart = True Then ContinueLoop
-			If iChkRequest = 1 Then
+			If $iChkRequest = 1 Then
 				RequestCC()
 				If _Sleep(1000) Then Return
 				checkMainScreen(False)
