@@ -21,7 +21,7 @@
 
 #pragma compile(ProductVersion, 4.0)
 #pragma compile(FileVersion, 4.0)
-#pragma compile(LegalCopyright, © http://gamebot.org)
+#pragma compile(LegalCopyright, Â© http://gamebot.org)
 
 $sBotVersion = "v4.0 DE MOD BETA"
 $sBotTitle = "Clash Game Bot " & $sBotVersion
@@ -170,9 +170,11 @@ Func runBot() ;Bot that runs everything in order
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
 			If $Restart = True Then ContinueLoop
-;			RequestCC()
-;			If _Sleep(1000) Then Return
-			checkMainScreen(False)
+			If iChkRequest = 1 Then
+				RequestCC()
+				If _Sleep(1000) Then Return
+				checkMainScreen(False)
+			EndIf
 			If $Restart = True Then ContinueLoop
 			If $iUnbreakableMode >= 1 Then
 				If Unbreakable() = True Then ContinueLoop
