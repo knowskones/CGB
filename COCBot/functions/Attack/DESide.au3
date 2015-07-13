@@ -88,8 +88,10 @@ EndFunc   ;==>GetDEEdge
 Func CheckfoundorcoreDE()
 	DExy()
 	If $iSkipUndetectedDE = 2 Or ($iSkipUndetectedDE = 3 And $LBHeroFilter = 1) Then
-		SetLog("DE Storage Not Located, Skipping ", $COLOR_BLUE)
-		Return False
+		If $DESLoc = 0 Then
+			SetLog("DE Storage Not Located, Skipping ", $COLOR_BLUE)
+			Return False
+		EndIf
 	EndIf
 	If $DESLoc = 1 And ($iSkipCentreDE = 2 Or ($iSkipCentreDE = 3 And $LBHeroFilter = 1))  Then
 		If ($DESLocy < 368 And $DESLocy > 258 And $DESLocx < 485 And $DESLocx > 375) Then
