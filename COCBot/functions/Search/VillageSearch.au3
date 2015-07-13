@@ -161,7 +161,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			$iMatchMode = $DB
 			ExitLoop
 		ElseIf $matchLB And Not $dbBase Then
-			If $iChkDeploySettings[$LB] = 4 And ($iSkipUndetected > 0 Or $iSkipCenterDE > 0) Then
+			If $iChkDeploySettings[$LB] = 4 And ($iSkipUndetectedDE > 0 Or $iSkipCenterDE > 0) Then
 				If CheckfoundorcoreDE() = True Then
 					SetLog(_PadStringCenter(" DE Side Base Found!- ", 50, "~"), $COLOR_GREEN)
 					$iMatchMode = $LB
