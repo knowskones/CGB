@@ -174,6 +174,9 @@ Func readConfig() ;Reads config and sets it to the variables
 		$iChkSmartAttack[$LB][1] = IniRead($config, "attack", "ABSmartAttackElixirCollector", "0")
 		$iChkSmartAttack[$LB][2] = IniRead($config, "attack", "ABSmartAttackDarkElixirDrill", "0")
 
+		$iChkDEUseSpell = IniRead($config, "attack", "ABDEUseSpell", "0")
+		$iChkDEUseSpellType = IniRead($config, "attack", "ABDEUseSpellType", "0")
+
 		$KingAttack[$DB] = IniRead($config, "attack", "DBKingAtk", "0")
 		$KingAttack[$LB] = IniRead($config, "attack", "ABKingAtk", "0")
 

@@ -354,6 +354,13 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 		GUICtrlSetState($chkABAttackNearDarkElixirDrill, $GUI_UNCHECKED)
 	EndIf
 
+	If $iChkDEUseSpell = 1 Then
+		GUICtrlSetState($chkABDEUseSpell, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkABDEUseSpell, $GUI_UNCHECKED)
+	EndIf
+	_GUICtrlComboBox_SetCurSel($cmbABDEUseSpellType, $iChkDEUseSpellType)
+
 	If $KingAttack[$DB] = 1 Then
 		GUICtrlSetState($chkDBKingAttack, $GUI_CHECKED)
 	Else

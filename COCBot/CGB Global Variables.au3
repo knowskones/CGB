@@ -219,6 +219,9 @@ Global $fullArmy ;Check for full army or not
 Global $iChkDeploySettings[$iModeCount] ;Method of deploy found in attack settings
 Global $iChkRedArea[$iModeCount], $iCmbSmartDeploy[$iModeCount], $iChkSmartAttack[$iModeCount][3], $iCmbSelectTroop[$iModeCount]
 
+Global $iChkDEUseSpell
+Global $iChkDEUseSpellType
+
 Global $troopsToBeUsed[11]
 Global $useAllTroops[24] = [$eBarb, $eArch, $eGiant, $eGobl, $eWall, $eBall, $eWiza, $eHeal, $eDrag, $ePekk, $eMini, $eHogs, $eValk, $eGole, $eWitc, $eLava, $eKing, $eQueen, $eCastle, $eLSpell, $eHSpell, $eRSpell, $eJSpell, $eFSpell]
 Global $useBarracks[18] = [$eBarb, $eArch, $eGiant, $eGobl, $eWall, $eBall, $eWiza, $eHeal, $eDrag, $ePekk, $eKing, $eQueen, $eCastle, $eLSpell, $eHSpell, $eRSpell, $eJSpell, $eFSpell]
@@ -569,6 +572,7 @@ Global $DEEdge, $DarkLow
 Global $saveiChkTimeStopAtk, $saveiChkTimeStopAtk2, $saveichkEndOneStar, $saveichkEndTwoStars
 Global $DESideEB, $DELowEndMin, $DisableOtherEBO
 Global $DEEndAq, $DEEndBk, $DEEndOneStar
+Global $SpellDP[2] = [0, 0]; Spell drop point for DE attack
 ;Location for BK & AQ for boosting
 Global $KingPos[2], $QueenPos[2]
 ;Hero Healing Filter

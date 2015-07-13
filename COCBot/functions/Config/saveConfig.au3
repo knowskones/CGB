@@ -317,6 +317,14 @@ Func saveConfig() ;Saves the controls settings to the config
 		IniWrite($config, "attack", "ABSmartAttackDarkElixirDrill", 0)
 	EndIf
 
+	If GUICtrlRead($chkABDEUseSpell) = $GUI_CHECKED Then
+		IniWrite($config, "attack", "ABDEUseSpell", 1)
+	Else
+		IniWrite($config, "attack", "ABDEUseSpell", 0)
+	EndIf
+
+	IniWrite($config, "attack", "ABDEUseSpellType", _GUICtrlComboBox_GetCurSel($cmbABDEUseSpellType))
+
 	If GUICtrlRead($chkDBKingAttack) = $GUI_CHECKED Then
 		IniWrite($config, "attack", "DBKingAtk", 1)
 	Else

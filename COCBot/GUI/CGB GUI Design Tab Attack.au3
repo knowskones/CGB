@@ -121,7 +121,7 @@ $tabAttack = GUICtrlCreateTabItem("Attack")
 		$chkABRandomSpeedAtk = GUICtrlCreateCheckbox("Randomize delay for Units && Waves", $x, $y, -1, -1)
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkABRandomSpeedAtk")
-	$y = 250
+	$y = 240
 		$chkABSmartAttackRedArea = GUICtrlCreateCheckbox("Use Smart Attack: Near Red Line.", $x, $y, -1, -1)
 			$txtTip = "Use Smart Attack to detect the outer 'Red Line' of the village to attack. And drop your troops close to it."
 			GUICtrlSetTip(-1, $txtTip)
@@ -154,6 +154,12 @@ $tabAttack = GUICtrlCreateTabItem("Attack")
  			GUICtrlSetTip(-1, $txtTip)
 		$picABAttackNearDarkElixirDrill = GUICtrlCreateIcon($pIconLib, $eIcnDrill, $x + 20 , $y - 3, 24, 24)
  			GUICtrlSetTip(-1, $txtTip)
+		$y += 22
+		$chkABDEUseSpell = GUICtrlCreateCheckbox("DE attack Spell:",$x - 130, $y, -1 , -1)
+			$txtTip = "Drop spell while doing DE attack (only work with DE side attack ATM)"
+ 			GUICtrlSetTip(-1, $txtTip)
+		$cmbABDEUseSpellType = GUICtrlCreateCombo("", $x - 30, $y, 95, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			GUICtrlSetData(-1, "Healing|Rage", "Heal")
 	$x -= 70
 	$y = 335
 		GUICtrlCreateIcon($pIconLib, $eIcnKing, $x, $y, 24, 24)
@@ -171,8 +177,8 @@ $tabAttack = GUICtrlCreateTabItem("Attack")
 			GUICtrlSetTip(-1, "Drop your Clan Castle in battle if it contains troops.")
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
-	Local $x = 200, $y = 345
-	$grpClanCastleBal = GUICtrlCreateGroup("ClanCastle Balance", $x - 20, $y - 20, 110, 100)
+	Local $x = 200, $y = 350
+	$grpClanCastleBal = GUICtrlCreateGroup("ClanCastle Balance", $x - 20, $y - 20, 110, 95)
 		GUICtrlCreateLabel("", $x - 18, $y - 7, 106, 85) ; fake label to hide group border from DB and LB setting groups
 		GUICtrlSetBkColor (-1, $COLOR_WHITE)
 		GUICtrlSetState (-1, $GUI_DISABLE)

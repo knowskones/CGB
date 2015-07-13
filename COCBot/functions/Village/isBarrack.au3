@@ -54,11 +54,14 @@ Func isSpellFactory()
 	If _ColorCheck(_GetPixelColor(640, 530, True), Hex(0xeceee8, 6), 10)  Then
 		if $debugSetlog = 1 then SetLog("Spell FactoryDark  selected")
 		Return True ;Spell Factory
-		EndIf
-Return True ;Spell
+	EndIf
+	Return False
+EndFunc   ;==>isSpellFactory
+
+Func isDarkSpellFactory()
 	If _ColorCheck(_GetPixelColor(700, 530, True), Hex(0xeceee8, 6), 10)  Then
 		if $debugSetlog = 1 then SetLog("Dark Spell Factory  selected")
 		Return True ;dark Spell Factory
-		EndIf
+	EndIf
 	Return False
-EndFunc   ;==>isSpellFactory
+EndFunc   ;==>isDarkSpellFactory

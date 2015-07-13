@@ -1,19 +1,80 @@
+Func DESpellDP()
+	local $xLimit = 0
+	local $yLimit = 0
+	local $HSDist[2] = [60, 55]
+	local $MaxDist[2] = [90, 90]
+	$SpellDP[0] = 0
+	$SpellDP[1] = 0
+
+	If $DESLoc = 0 Then
+		; assume the DE is in the center
+		$DESLocx = $MapCenter[0]
+		$DESLocy = $MapCenter[1]
+	Endif
+	If $DEEdge = 0 Then
+		$xLimit = $MapCenter[0] + $MaxDist[0]
+		$yLimit = $MapCenter[1] + $MaxDist[1]
+		$SpellDP[0] = $DESLocx + $HSDist[0]
+		$SpellDP[1] = $DESLocy + $HSDist[1]
+		if $SpellDP[0] > $xLimit Then
+			$SpellDP[0] = $xLimit
+		Endif
+		if $SpellDP[1] >  $yLimit Then
+			$SpellDP[1] = $yLimit
+		Endif
+	ElseIf $DEEdge = 3 Then
+		$xLimit = $MapCenter[0] + $MaxDist[0]
+		$yLimit = $MapCenter[1] - $MaxDist[1]
+		$SpellDP[0] = $DESLocx + $HSDist[0]
+		$SpellDP[1] = $DESLocy - $HSDist[1]
+		if $SpellDP[0] > $xLimit Then
+			$SpellDP[0] = $xLimit
+		Endif
+		if $SpellDP[1] < $yLimit  Then
+			$SpellDP[1] = $yLimit
+		Endif
+	ElseIf $DEEdge = 1 Then
+		$xLimit = $MapCenter[0] - $MaxDist[0]
+		$yLimit = $MapCenter[1] - $MaxDist[1]
+		$SpellDP[0] = $DESLocx - $HSDist[0]
+		$SpellDP[1] = $DESLocy - $HSDist[1]
+		if $SpellDP[0] < $xLimit Then
+			$SpellDP[0] = $xLimit
+		Endif
+		if $SpellDP[1] <  $yLimit Then
+			$SpellDP[1] = $yLimit
+		Endif
+	ElseIf $DEEdge = 2 Then
+		$xLimit = $MapCenter[0] - $MaxDist[0]
+		$yLimit = $MapCenter[1] + $MaxDist[1]
+		$SpellDP[0] = $DESLocx - $HSDist[0]
+		$SpellDP[1] = $DESLocy + $HSDist[1]
+		if $SpellDP[0] < $xLimit Then
+			$SpellDP[0] = $xLimit
+		Endif
+		if $SpellDP[1] > $yLimit  Then
+			$SpellDP[1] = $yLimit
+		Endif
+	EndIf
+	SetLog ("Spell drop point: " & $SpellDP[0] & ", " & $SpellDP[1] , $COLOR_BLUE)
+EndFunc	;==>DESpellDP
+
 Func GetDEEdge() ;Using $DESLoc x y we are finding which side de is located.
 	DExy()
 	If $DESLoc = 1 Then
-		If ($DESLocx = 430) And ($DESLocy = 313) Then
+		If ($DESLocx = $MapCenter[0]) And ($DESLocy = $MapCenter[1]) Then
 			SetLog("DE Storage Located in Middle... Attacking Random Side", $COLOR_BLUE)
 			$DEEdge = (Random(Round(0, 3)))
-		ElseIf ($DESLocx >= 430) And ($DESLocy >= 313) Then
+		ElseIf ($DESLocx >= $MapCenter[0]) And ($DESLocy >= $MapCenter[1]) Then
 			SetLog("DE Storage Located Bottom Right... Attacking Bottom Right", $COLOR_BLUE)
 			$DEEdge = 0
-		ElseIf ($DESLocx > 430) And ($DESLocy < 313) Then
+		ElseIf ($DESLocx > $MapCenter[0]) And ($DESLocy < $MapCenter[1]) Then
 			SetLog("DE Storage Located Top Right... Attacking Top Right", $COLOR_BLUE)
 			$DEEdge = 3
-		ElseIf ($DESLocx <= 430) And ($DESLocy <= 313) Then
+		ElseIf ($DESLocx <= $MapCenter[0]) And ($DESLocy <= $MapCenter[1]) Then
 			SetLog("DE Storage Located Top Left... Attacking Top Left", $COLOR_BLUE)
 			$DEEdge = 1
-		ElseIf ($DESLocx < 430) And ($DESLocy > 313) Then
+		ElseIf ($DESLocx < $MapCenter[0]) And ($DESLocy > $MapCenter[1]) Then
 			SetLog("DE Storage Located Bottom Left... Attacking Bottom Left", $COLOR_BLUE)
 			$DEEdge = 2
 		EndIf
