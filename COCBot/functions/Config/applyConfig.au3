@@ -197,6 +197,9 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	_GUICtrlComboBox_SetCurSel($cmbABWeakWizTower, $iCmbWeakWizTower[$LB])
 
 	;Hero Filters
+	_GUICtrlComboBox_SetCurSel($cmbSkipCentreDE, $iSkipCentreDE)
+	_GUICtrlComboBox_SetCurSel($cmbSkipUndetectedDE, $iSkipUndetectedDE)
+
 	_GUICtrlComboBox_SetCurSel($cmbABMeetGEHero, $iCmbMeetGEHero)
 
 	If $iChkMeetDEHero = 1 Then

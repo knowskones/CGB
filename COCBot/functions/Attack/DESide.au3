@@ -65,6 +65,7 @@ Func GetDEEdge() ;Using $DESLoc x y we are finding which side de is located.
 		If ($DESLocx = $MapCenter[0]) And ($DESLocy = $MapCenter[1]) Then
 			SetLog("DE Storage Located in Middle... Attacking Random Side", $COLOR_BLUE)
 			$DEEdge = (Random(Round(0, 3)))
+
 		ElseIf ($DESLocx >= $MapCenter[0]) And ($DESLocy >= $MapCenter[1]) Then
 			SetLog("DE Storage Located Bottom Right... Attacking Bottom Right", $COLOR_BLUE)
 			$DEEdge = 0
@@ -83,6 +84,22 @@ Func GetDEEdge() ;Using $DESLoc x y we are finding which side de is located.
 		$DEEdge = (Random(Round(0, 3)))
 	EndIf
 EndFunc   ;==>GetDEEdge
+
+Func CheckfoundorcoreDE()
+	DExy()
+	If $iSkipUndetectedDE = 2 Or ($iSkipUndetectedDE = 3 And $LBHeroFilter = 1) Then
+		SetLog("DE Storage Not Located, Skipping ", $COLOR_BLUE)
+		Return False
+	EndIf
+	If $DESLoc = 1 And ($iSkipCentreDE = 2 Or ($iSkipCentreDE = 3 And $LBHeroFilter = 1))  Then
+		If ($DESLocy < 368 And $DESLocy > 258 And $DESLocx < 485 And $DESLocx > 375) Then
+			SetLog("DE Storage Located in Core, Skipping", $COLOR_BLUE)
+			Return False
+		EndIf
+	EndIf
+	Return True
+EndFunc	   ;==>CheckfoundorcoreDE
+
 
 Func DExy()
 	_WinAPI_DeleteObject($hBitmapFirst)

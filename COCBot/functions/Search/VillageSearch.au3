@@ -16,6 +16,10 @@
 Func VillageSearch() ;Control for searching a village that meets conditions
 	$iSkipped = 0
 
+	If $iCmbSearchMode > 0 and ($LBAQFilter = 1 Or $LBBKFilter = 1) Then
+		LiveRoyalFilter()
+	EndIf
+
 	If $Is_ClientSyncError = False Then
 		For $i = 0 To $iModeCount - 1
 			$iAimGold[$i] = $iMinGold[$i]
@@ -29,12 +33,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 	_WinAPI_EmptyWorkingSet(WinGetProcess($Title))
 
 	If _Sleep(1000) Then Return
-	If $LBHeroFilter = 1 Then
-		RevertRoyalFilter()
-	EndIf
-	If $iCmbSearchMode > 0 and ($LBAQFilter = 1 Or $LBBKFilter = 1) Then
-		LiveRoyalFilter()
-	EndIf
+
 	;	; Check Break Shield button again
 	;	If _CheckPixel($aBreakShield, $bCapturePixel) Then
 	;		ClickP($aBreakShield, 1, 0, "#0154");Click Okay To Break Shield
@@ -162,13 +161,16 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			$iMatchMode = $DB
 			ExitLoop
 		ElseIf $matchLB And Not $dbBase Then
-			If $LBHeroFilter = 1 And $iChkDeploySettings[$LB] = 4 Then
-				DExy()
-				If $DESLoc <> 0 Then
-					SetLog(_PadStringCenter(" Live Base Found! ", 50, "~"), $COLOR_GREEN)
+			If $iChkDeploySettings[$LB] = 4 And ($iSkipUndetected > 0 Or $iSkipCenterDE > 0) Then
+				If CheckfoundorcoreDE() = True Then
+					SetLog(_PadStringCenter(" DE Side Base Found!- ", 50, "~"), $COLOR_GREEN)
 					$iMatchMode = $LB
 					ExitLoop
 				EndIf
+			ElseIf $iChkDeploySettings[$LB] = 4 Then
+				SetLog(_PadStringCenter(" DE Side Base Found! ", 50, "~"), $COLOR_GREEN)
+				$iMatchMode = $LB
+				ExitLoop
 			Else
 				SetLog(_PadStringCenter(" Live Base Found! ", 50, "~"), $COLOR_GREEN)
 				$iMatchMode = $LB

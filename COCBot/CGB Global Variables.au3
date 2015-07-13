@@ -576,7 +576,7 @@ Global $SpellDP[2] = [0, 0]; Spell drop point for DE attack
 ;Location for BK & AQ for boosting
 Global $KingPos[2], $QueenPos[2]
 ;Hero Healing Filter
-Global $LBsave[17], $LBHeroFilter, $LBAQFilter, $LBBKFilter
+Global $LBsave[17], $LBHeroFilter, $LBAQFilter, $LBBKFilter, $iSkipCentreDE, $iSkipUndetectedDE
 Global 	$iCmbMeetGEHero, $iChkMeetDEHero, $iChkMeetTrophyHero, $iChkMeetTHHero, $iChkMeetTHOHero, $iChkWeakBaseHero, $iChkMeetOneHero, $iEnableAfterCountHero, $iMinGoldHero
 Global $iMinElixirHero, $iMinGoldPlusElixirHero,$iMinDarkHero, $iMinTrophyHero, $iCmbTHHero, $iCmbWeakMortarHero, $iCmbWeakWizTowerHero, $iMaxTHHero
 

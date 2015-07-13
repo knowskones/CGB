@@ -118,6 +118,8 @@ Func readConfig() ;Reads config and sets it to the variables
 
 
 	;Hero Filter Settings.
+		$iSkipCentreDE = IniRead($config, "search", "SkipCentreDE", "0")
+		$iSkipUndetectedDE = IniRead($config, "search", "SkipUndetectedDE", "0")
 		$iCmbMeetGEHero = IniRead($config, "search", "ABMeetGEHero", "2")
 		$iChkMeetDEHero = IniRead($config, "search", "ABMeetDEHero", "0")
 		$iChkMeetTrophyHero = IniRead($config, "search", "ABMeetTrophyHero", "0")

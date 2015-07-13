@@ -125,6 +125,9 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "search", "DBWeakWizTower", _GUICtrlComboBox_GetCurSel($cmbDBWeakWizTower))
 
 	;Hero Filters
+	IniWrite($config, "search", "SkipCentreDE", _GUICtrlComboBox_GetCurSel($cmbSkipCentreDE))
+	IniWrite($config, "search", "SkipUndetectedDE", _GUICtrlComboBox_GetCurSel($cmbSkipUndetectedDE))
+
 	IniWrite($config, "search", "ABMeetGEHero", _GUICtrlComboBox_GetCurSel($cmbABMeetGEHero))
 
 	If GUICtrlRead($chkABMeetDEHero) = $GUI_CHECKED Then

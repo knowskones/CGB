@@ -357,6 +357,31 @@ $tabSearch = GUICtrlCreateTabItem("Search")
 		GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 
+
+
+
+	Local $x = 30, $y = 150
+	$grpSkipCentreDE = GUICtrlCreateGroup("Skip Centre DE", $x - 20, $y - 20, 170, 55)
+	GUICtrlSetState (-1, $GUI_HIDE)
+		$cmbSkipCentreDE = GUICtrlCreateCombo("", $x - 15 , $y, 160, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			$txtTip = "Always attack centre De storage no filter" & @CRLF & _
+						"Always skip base when de is in the centre." & @CRLF & "Only skip centre de base if either bk or aq filter enabled and they are healing."
+			GUICtrlSetData(-1, "Always Attack Centre DE|Always Skip Centre DE|Skip When BK/AQ Sleeping", "Always Attack Centre DE")
+			GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetState (-1, $GUI_HIDE)
+	GUICtrlCreateGroup("", -99, -99, 1, 1)
+
+	$x = 205
+	$grpSkipUndetectedDE = GUICtrlCreateGroup("Skip Undetected DE", $x - 20, $y - 20, 170, 55)
+	GUICtrlSetState (-1, $GUI_HIDE)
+		$cmbSkipUndetectedDE = GUICtrlCreateCombo("", $x - 15 , $y, 160, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			$txtTip = "Always attack centre De storage no filter" & @CRLF & _
+						"Always skip base when de is not found." & @CRLF & "Only skip undetected de base if either bk or aq filter enabled and they are healing."
+			GUICtrlSetData(-1, "Always Attack Centre DE|Always Skip Centre DE|Skip When BK/AQ Sleeping", "Always Attack Centre DE")
+			GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetState (-1, $GUI_HIDE)
+	GUICtrlCreateGroup("", -99, -99, 1, 1)
+
 		Local $x = 30, $y = 210
 			$grpLiveBaseConditionsKing = GUICtrlCreateGroup("King Filter", $x - 20, $y - 20, 225, 130)
 			GUICtrlSetState (-1, $GUI_HIDE)

@@ -100,7 +100,6 @@ $tabAttack = GUICtrlCreateTabItem("Attack")
 			GUICtrlSetTip(-1, "Attack on a single side, penetrates through base" & @CRLF & "Attack on two sides, penetrates through base" & @CRLF & "Attack on three sides, gets outer and some inside of base" & @CRLF & "Attack on all sides equally, gets most of outer base" & @CRLF & "Attack on all sides equally, gets most of outer base" & @CRLF & "Attacks single side slosest to Dark Elixir Storage", "Select the No. of sides to attack on.")
 			GUICtrlSetData(-1, "one side|two sides|three sides|all sides equally|DE Side Attack", "all sides equally")
 			GUICtrlSetOnEvent(-1, "chkABSmartAttackRedArea")
-			GUICtrlSetOnEvent(-1, "chkDESideEB")
 		$y += 25
 		$lblABSelectTroop=GUICtrlCreateLabel("Troops:",$x, $y + 5, -1 , -1)
 		$cmbABSelectTroop=GUICtrlCreateCombo("", $x + 55, $y, 120, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))

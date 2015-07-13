@@ -23,7 +23,7 @@
 #pragma compile(FileVersion, 4.0)
 #pragma compile(LegalCopyright, © http://gamebot.org)
 
-$sBotVersion = "v4.0 DE MOD BETA"
+$sBotVersion = "v4.0 DE MOD V1.2"
 $sBotTitle = "Clash Game Bot " & $sBotVersion
 Global $sBotDll = @ScriptDir & "\CGBPlugin.dll"
 
@@ -33,7 +33,7 @@ If _Singleton($sBotTitle, 1) = 0 Then
 EndIf
 
 If @AutoItX64 = 1 Then
-	MsgBox(0, "", "Don't Run/Compile the Script as (x64)! try to Run/Compile the Script as (x86) to get the bot to work." & @CRLF & _
+	MsgBox(0, "", "Don't Run/Compile the Script as (x64)! Try to Run the Script as (x86) to get the bot to work." & @CRLF & _
 			"If this message still appears, try to re-install AutoIt.")
 	Exit
 EndIf
@@ -174,8 +174,8 @@ Func runBot() ;Bot that runs everything in order
 				RequestCC()
 				If _Sleep(1000) Then Return
 				checkMainScreen(False)
+				If $Restart = True Then ContinueLoop
 			EndIf
-			If $Restart = True Then ContinueLoop
 			If $iUnbreakableMode >= 1 Then
 				If Unbreakable() = True Then ContinueLoop
 			EndIf

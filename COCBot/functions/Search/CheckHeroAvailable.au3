@@ -1,4 +1,7 @@
 	Func LiveRoyalFilter()
+		If $LBHeroFilter = 1 Then
+			RevertRoyalFilter()
+		EndIf
 		GetResources() ;Reads Resource Values ;waits until it can read army
 		$searchGold2 = 0
 		PrepareAttack(True)
@@ -40,11 +43,11 @@
 			$LBsave[6] = $iChkWeakBase[$LB]
 			$LBsave[7] = $iChkMeetOne[$LB]
 			$LBsave[8] = $iEnableAfterCount[$LB]
-			$LBsave[9] = $iAimGold[$LB]
-			$LBsave[10] = $iAimElixir[$LB]
-			$LBsave[11] = $iAimGoldPlusElixir[$LB]
-			$LBsave[12] = $iAimDark[$LB]
-			$LBsave[13] = $iAimTrophy[$LB]
+			$LBsave[9] = $iMinGold[$LB]
+			$LBsave[10] = $iMinElixir[$LB]
+			$LBsave[11] = $iMinGoldPlusElixir[$LB]
+			$LBsave[12] = $iMinDark[$LB]
+			$LBsave[13] = $iMinTrophy[$LB]
 			$LBsave[14] = $iCmbTH[$LB]
 			$LBsave[15] = $iCmbWeakMortar[$LB]
 			$LBsave[16] = $iCmbWeakWizTower[$LB]
@@ -58,11 +61,11 @@
 			$iChkMeetTHO[$LB] = 		$iChkMeetTHOHero
 			$iChkWeakBase[$LB] = 		$iChkWeakBaseHero
 			$iChkMeetOne[$LB] = 		$iChkMeetOneHero
-			$iAimGold[$LB] = 			$iMinGoldHero
-			$iAimElixir[$LB] = 			$iMinElixirHero
-			$iAimGoldPlusElixir[$LB] = 	$iMinGoldPlusElixirHero
-			$iAimDark[$LB] = 			$iMinDarkHero
-			$iAimTrophy[$LB] = 			$iMinTrophyHero
+			$iMinGold[$LB] = 			$iMinGoldHero
+			$iMinElixir[$LB] = 			$iMinElixirHero
+			$iMinGoldPlusElixir[$LB] = 	$iMinGoldPlusElixirHero
+			$iMinDark[$LB] = 			$iMinDarkHero
+			$iMinTrophy[$LB] = 			$iMinTrophyHero
 			$iCmbTH[$LB] = 				$iCmbTHHero
 			$iCmbWeakMortar[$LB] = 		$iCmbWeakMortarHero
 			$iCmbWeakWizTower[$LB] = 	$iCmbWeakWizTowerHero
@@ -80,11 +83,11 @@
 			$iChkWeakBase[$LB] =		$LBsave[6]
 			$iChkMeetOne[$LB] = 		$LBsave[7]
 			$iEnableAfterCount[$LB] = 	$LBsave[8]
-			$iAimGold[$LB] = 			$LBsave[9]
-			$iAimElixir[$LB] = 			$LBsave[10]
-			$iAimGoldPlusElixir[$LB] = 	$LBsave[11]
-			$iAimDark[$LB] = 			$LBsave[12]
-			$iAimTrophy[$LB] = 			$LBsave[13]
+			$iMinGold[$LB] = 			$LBsave[9]
+			$iMinElixir[$LB] = 			$LBsave[10]
+			$iMinGoldPlusElixir[$LB] = 	$LBsave[11]
+			$iMinDark[$LB] = 			$LBsave[12]
+			$iMinTrophy[$LB] = 			$LBsave[13]
 			$iCmbTH[$LB] = 				$LBsave[14]
 			$iCmbWeakMortar[$LB] = 		$LBsave[15]
 			$iCmbWeakWizTower[$LB] = 	$LBsave[16]

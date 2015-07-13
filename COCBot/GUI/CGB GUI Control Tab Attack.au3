@@ -14,6 +14,7 @@
 ; ===============================================================================================================================
 
 Func chkDBSmartAttackRedArea()
+	chkDESideEB()
 	If GUICtrlRead($chkDBSmartAttackRedArea) = $GUI_CHECKED Then
 		$iChkRedArea[$DB] = 1
 		For $i = $lblDBSmartDeploy To $picDBAttackNearDarkElixirDrill

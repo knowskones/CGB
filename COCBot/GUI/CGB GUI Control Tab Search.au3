@@ -255,7 +255,7 @@ Func hidehero()
 	For $i = $grpSearchMode To $picSearchReduceTrophy
 		GUICtrlSetState($i, $GUI_HIDE)
 	Next
-	For $i = $grpLiveBaseConditionsKing To $cmbABMeetGEHero
+	For $i = $grpSkipCentreDE To $cmbABMeetGEHero
 		GUICtrlSetState($i, $GUI_SHOW)
 
 	Next
@@ -267,21 +267,24 @@ EndFunc
 Func hidenormal()
 	GUICtrlSetState($btnNormalSwitch, $GUI_SHOW)
 	GUICtrlSetState($btnHeroSwitch, $GUI_HIDE)
-	For $i = $grpLiveBaseConditionsKing To $chkABMeetOneHero
+	For $i = $grpSkipCentreDE To $chkABMeetOneHero
 		GUICtrlSetState($i, $GUI_HIDE)
 	Next
-	For $i = $grpSearchMode To $cmbDBMeetGE
+	For $i = $grpSearchMode To $grpDeadBaseConditions
 		GUICtrlSetState($i, $GUI_SHOW)
 	Next
+	cmbSearchMode()
+	GUICtrlSetState($cmbDBMeetGE, $GUI_SHOW)
 	cmbDBGoldElixir()
-	For $i = $chkDBMeetDE To $cmbABMeetGE
+	For $i = $chkDBMeetDE To $grpLiveBaseConditions
 		GUICtrlSetState($i, $GUI_SHOW)
 	Next
+	GUICtrlSetState($cmbABMeetGE, $GUI_SHOW)
 	cmbABGoldElixir()
 	For $i = $chkABMeetDE To $picSearchReduceTrophy
 		GUICtrlSetState($i, $GUI_SHOW)
 	Next
-	cmbSearchMode()
+
 EndFunc
 
 Func chkABEnableAfterHero()
