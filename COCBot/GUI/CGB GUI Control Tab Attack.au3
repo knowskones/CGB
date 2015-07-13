@@ -14,7 +14,6 @@
 ; ===============================================================================================================================
 
 Func chkDBSmartAttackRedArea()
-	chkDESideEB()
 	If GUICtrlRead($chkDBSmartAttackRedArea) = $GUI_CHECKED Then
 		$iChkRedArea[$DB] = 1
 		For $i = $lblDBSmartDeploy To $picDBAttackNearDarkElixirDrill
@@ -29,6 +28,7 @@ Func chkDBSmartAttackRedArea()
 EndFunc   ;==>chkDBSmartAttackRedArea
 
 Func chkABSmartAttackRedArea()
+	chkDESideEB()
 	If _GUICtrlComboBox_GetCurSel($cmbABDeploy) = 4 Then
 		GUICtrlSetState($chkABSmartAttackRedArea, $GUI_UNCHECKED)
 		GUICtrlSetState($chkABSmartAttackRedArea, $GUI_DISABLE)
