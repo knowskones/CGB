@@ -23,7 +23,7 @@
 #pragma compile(FileVersion, 4.0)
 #pragma compile(LegalCopyright, © http://gamebot.org)
 
-$sBotVersion = "v4.0 DE MOD V1.2"
+$sBotVersion = "v4.0 DE MOD V1.2 "
 $sBotTitle = "Clash Game Bot " & $sBotVersion
 Global $sBotDll = @ScriptDir & "\CGBPlugin.dll"
 
