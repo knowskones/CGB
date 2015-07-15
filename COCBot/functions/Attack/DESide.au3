@@ -147,7 +147,7 @@ Func DELow()
 		$DarkE = getDarkElixirVillageSearch(48, 125)
 		If _Sleep(50) Then Return
 		If Number($DarkE) < (Number($searchDark) * (Number($DELowEndMin) / 100)) Then ; Second check if Dark Elixer is below set minimum
-			If $DEEndAq And $dropQueen And $checkQPower = False Then
+			If $DEEndAq =1 And $dropQueen And $checkQPower = False Then
 				If $iActivateKQCondition = "Auto" Then
 					$DarkLow = 1
 					SetLog("Low De. De = ( " & $DarkE & " ) and AQ health Low. Return to protect Royals.  Returning immediately", $COLOR_GREEN)
@@ -158,7 +158,7 @@ Func DELow()
 					Return False
 				EndIf
 			EndIf
-			If $DEEndBk And $dropKing And $checkKPower = False Then
+			If $DEEdge = 1 And $dropKing And $checkKPower = False Then
 				If $iActivateKQCondition = "Auto" Then
 					$DarkLow = 1
 					SetLog("Low De. De = ( " & $DarkE & " ) and BK health Low. Return to protect Royals.  Returning immediately", $COLOR_GREEN)
@@ -169,7 +169,7 @@ Func DELow()
 					Return False
 				EndIf
 			EndIf
-			If $DEEndOneStar Then
+			If $DEEndOneStar = 1 Then
 				If _ColorCheck(_GetPixelColor($aWonOneStar[0], $aWonOneStar[1], True), Hex($aWonOneStar[2], 6), $aWonOneStar[3]) Then
 					SetLog("Low De. De = ( " & $DarkE & " ) and 1 star achieved. Return to protect Royals.  Returning immediately", $COLOR_GREEN)
 					$DarkLow = 1
