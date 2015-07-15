@@ -73,7 +73,7 @@ Func GoldElixirChangeEBO()
 		CheckHeroesHealth()
 
 		;DE SPECIAL END EARLY
-		If $iMatchMode = $LB And $iChkDeploySettings[$LB] = 4 And $DESideEB Then
+		If $iMatchMode = $LB And $iChkDeploySettings[$LB] = 4 And $DESideEB = 1 Then
 			If $dropQueen Or $dropKing Then DELow()
 			If $DarkLow = 1 Then ExitLoop
 		EndIf
