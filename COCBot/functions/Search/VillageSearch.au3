@@ -21,7 +21,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 	EndIf
 
 	If $Is_ClientSyncError = False Then
-		For $i = 0 To $iModeCount - 1
+		For $i = 0 to $iModeCount - 1
 			$iAimGold[$i] = $iMinGold[$i]
 			$iAimElixir[$i] = $iMinElixir[$i]
 			$iAimGoldPlusElixir[$i] = $iMinGoldPlusElixir[$i]
@@ -34,46 +34,45 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 
 	If _Sleep(1000) Then Return
 
-	;	; Check Break Shield button again
-	;	If _CheckPixel($aBreakShield, $bCapturePixel) Then
-	;		ClickP($aBreakShield, 1, 0, "#0154");Click Okay To Break Shield
-	;	EndIf
+;	; Check Break Shield button again
+;	If _CheckPixel($aBreakShield, $bCapturePixel) Then
+;		ClickP($aBreakShield, 1, 0, "#0154");Click Okay To Break Shield
+;	EndIf
 
 	For $x = 0 To $iModeCount - 1
 		If $x = $DB And $iCmbSearchMode = 1 Then ContinueLoop
 		If $x = $LB And $iCmbSearchMode = 0 Then ContinueLoop
 
-		SetLog(_PadStringCenter(" Searching For " & $sModeText[$x] & " ", 54, "="), $COLOR_BLUE)
+			SetLog(_PadStringCenter(" Searching For " & $sModeText[$x] & " ", 54, "="), $COLOR_BLUE)
 
-		Local $MeetGxEtext = "", $MeetGorEtext = "", $MeetGplusEtext = "", $MeetDEtext = "", $MeetTrophytext = "", $MeetTHtext = "", $MeetTHOtext = "", $MeetWeakBasetext = "", $EnabledAftertext = ""
+			Local $MeetGxEtext = "", $MeetGorEtext = "", $MeetGplusEtext = "", $MeetDEtext = "", $MeetTrophytext = "", $MeetTHtext = "", $MeetTHOtext = "", $MeetWeakBasetext = "", $EnabledAftertext = ""
 
-		SetLog(_PadStringCenter(" SEARCH CONDITIONS ", 50, "~"), $COLOR_BLUE)
+			SetLog(_PadStringCenter(" SEARCH CONDITIONS ", 50, "~"), $COLOR_BLUE)
 
-		If $iCmbMeetGE[$x] = 0 Then $MeetGxEtext = "Meet: Gold and Elixir"
-		If $iCmbMeetGE[$x] = 1 Then $MeetGorEtext = "Meet: Gold or Elixir"
-		If $iCmbMeetGE[$x] = 2 Then $MeetGplusEtext = "Meet: Gold + Elixir"
-		If $iChkMeetDE[$x] = 1 Then $MeetDEtext = ", Dark"
-		If $iChkMeetTrophy[$x] = 1 Then $MeetTrophytext = ", Trophy"
-		If $iChkMeetTH[$x] = 1 Then $MeetTHtext = ", Max TH " & $iMaxTH[$x] ;$icmbTH
-		If $iChkMeetTHO[$x] = 1 Then $MeetTHOtext = ", TH Outside"
-		If $iChkWeakBase[$x] = 1 Then $MeetWeakBasetext = ", Weak Base(Mortar: " & $iCmbWeakMortar[$x] & ", WizTower: " & $iCmbWeakWizTower[$x] & ")"
-		If $iChkEnableAfter[$x] = 1 Then $EnabledAftertext = ", Enabled after " & $iEnableAfterCount[$x] & " searches"
+			If $iCmbMeetGE[$x] = 0 Then $MeetGxEtext = "Meet: Gold and Elixir"
+			If $iCmbMeetGE[$x] = 1 Then $MeetGorEtext = "Meet: Gold or Elixir"
+			If $iCmbMeetGE[$x] = 2 Then $MeetGplusEtext = "Meet: Gold + Elixir"
+			If $iChkMeetDE[$x] = 1 Then $MeetDEtext = ", Dark"
+			If $iChkMeetTrophy[$x] = 1 Then $MeetTrophytext = ", Trophy"
+			If $iChkMeetTH[$x] = 1 Then $MeetTHtext = ", Max TH " & $iMaxTH[$x] ;$icmbTH
+			If $iChkMeetTHO[$x] = 1 Then $MeetTHOtext = ", TH Outside"
+			If $iChkWeakBase[$x] = 1 Then $MeetWeakBasetext = ", Weak Base(Mortar: " & $iCmbWeakMortar[$x] & ", WizTower: " & $iCmbWeakWizTower[$x] & ")"
+			If $iChkEnableAfter[$x] = 1 Then $EnabledAftertext = ", Enabled after " & $iEnableAfterCount[$x] & " searches"
 
-		SetLog($MeetGxEtext & $MeetGorEtext & $MeetGplusEtext & $MeetDEtext & $MeetTrophytext & $MeetTHtext & $MeetTHOtext & $MeetWeakBasetext & $EnabledAftertext)
+			SetLog($MeetGxEtext & $MeetGorEtext & $MeetGplusEtext & $MeetDEtext & $MeetTrophytext & $MeetTHtext & $MeetTHOtext & $MeetWeakBasetext & $EnabledAftertext)
 
-		If $iChkMeetOne[$x] = 1 Then SetLog("Meet One and Attack!")
+			If $iChkMeetOne[$x] = 1 Then SetLog("Meet One and Attack!")
 
-		SetLog(_PadStringCenter(" RESOURCE CONDITIONS ", 50, "~"), $COLOR_BLUE)
-		If $iChkMeetTH[$x] = 1 Then $iAimTHtext[$x] = " [TH]:" & StringFormat("%2s", $iMaxTH[$x]) ;$icmbTH
-		If $iChkMeetTHO[$x] = 1 Then $iAimTHtext[$x] &= ", Out"
+			SetLog(_PadStringCenter(" RESOURCE CONDITIONS ", 50, "~"), $COLOR_BLUE)
+			If $iChkMeetTH[$x] = 1 Then $iAimTHtext[$x] = " [TH]:" & StringFormat("%2s", $iMaxTH[$x]) ;$icmbTH
+			If $iChkMeetTHO[$x] = 1 Then $iAimTHtext[$x] &= ", Out"
 
 
-		If $iCmbMeetGE[$x] = 2 Then
-			SetLog("Aim:           [G+E]:" & StringFormat("%7s", $iAimGoldPlusElixir[$x]) & " [D]:" & StringFormat("%5s", $iAimDark[$x]) & " [T]:" & StringFormat("%2s", $iAimTrophy[$x]) & $iAimTHtext[$x], $COLOR_GREEN, "Lucida Console", 7.5)
-		Else
-			SetLog("Aim: [G]:" & StringFormat("%7s", $iAimGold[$x]) & " [E]:" & StringFormat("%7s", $iAimElixir[$x]) & " [D]:" & StringFormat("%5s", $iAimDark[$x]) & " [T]:" & StringFormat("%2s", $iAimTrophy[$x]) & $iAimTHtext[$x], $COLOR_GREEN, "Lucida Console", 7.5)
-		EndIf
-
+			If $iCmbMeetGE[$x] = 2 Then
+				SetLog("Aim:           [G+E]:" & StringFormat("%7s", $iAimGoldPlusElixir[$x]) & " [D]:" & StringFormat("%5s", $iAimDark[$x]) & " [T]:" & StringFormat("%2s", $iAimTrophy[$x]) & $iAimTHtext[$x] & " for: " & $sModeText[$x], $COLOR_GREEN, "Lucida Console", 7.5)
+			Else
+				SetLog("Aim: [G]:" & StringFormat("%7s", $iAimGold[$x]) & " [E]:" & StringFormat("%7s", $iAimElixir[$x]) & " [D]:" & StringFormat("%5s", $iAimDark[$x]) & " [T]:" & StringFormat("%2s", $iAimTrophy[$x]) & $iAimTHtext[$x] & " for: " & $sModeText[$x], $COLOR_GREEN, "Lucida Console", 7.5)
+			EndIf
 	Next
 
 	If $OptBullyMode + $OptTrophyMode + $chkATH > 0 Then
@@ -86,14 +85,15 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			Next
 		EndIf
 
-		If $OptBullyMode = 1 Then SETLOG("THBully Combo @" & $ATBullyMode & " SearchCount, " & $YourTHText)
+		If $OptBullyMode = 1 Then SetLog("THBully Combo @" & $ATBullyMode & " SearchCount, " & $YourTHText)
 
 		If $chkATH = 1 Then $chkATHText = "AttackTH"
 		If $chkATH = 1 And $AttackTHType = 0 Then $AttackTHTypeText = ", Barch"
 		If $chkATH = 1 And $AttackTHType = 1 Then $AttackTHTypeText = ", Attack1:Normal"
 		If $chkATH = 1 And $AttackTHType = 2 Then $AttackTHTypeText = ", Attack2:Extreme"
+		If $chkATH = 1 And $AttackTHType = 3 Then $AttackTHTypeText = ", Attack3:GBarch"
 		If $OptTrophyMode = 1 Then $OptTrophyModeText = "THSnipe Combo, " & $THaddtiles & " Tile(s), "
-		If $OptTrophyMode = 1 Or $chkATH = 1 Then Setlog($OptTrophyModeText & $chkATHText & $AttackTHTypeText)
+		If $OptTrophyMode = 1 Or $chkATH = 1 Then SetLog($OptTrophyModeText & $chkATHText & $AttackTHTypeText)
 	EndIf
 
 	SetLog(_StringRepeat("=", 50), $COLOR_BLUE)
@@ -111,7 +111,6 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 	EndIf
 
 	While 1
-		$bBtnAttackNowPressed = False
 		If $iVSDelay > 0 Then
 			If _Sleep(1000 * $iVSDelay) Then Return
 		EndIf
@@ -119,10 +118,8 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 		If $Restart = True Then Return ; exit func
 		GetResources() ;Reads Resource Values
 		If $Restart = True Then Return ; exit func
-		If $iChkAttackNow = 1 Then
-			If _Sleep(1000 * $iAttackNowDelay) Then Return ; add human reaction time on AttackNow button function
-		EndIf
-		If $bBtnAttackNowPressed = True Then ExitLoop
+		$bBtnAttackNowPressed = False
+		;If $bBtnAttackNowPressed = True Then ExitLoop
 
 		If Mod(($iSkipped + 1), 100) = 0 Then
 			_WinAPI_EmptyWorkingSet(WinGetProcess($Title)) ; reduce BS memory
@@ -130,13 +127,14 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			If CheckZoomOut() = False Then Return
 		EndIf
 
+		Local $noMatchTxt = ""
 		Local $dbBase = False
 		Local $matchDB = False
 		Local $matchLB = False
 		Local $isWeakBase[$iModeCount]
 		For $x = 0 To $iModeCount - 1
 			$isWeakBase[$x] = False
-			If $iChkWeakBase[$x] = 1 Then
+			If ($x = $iCmbSearchMode Or $iCmbSearchMode = 2) And $iChkWeakBase[$x] = 1 Then
 				_WinAPI_DeleteObject($hBitmapFirst)
 				$hBitmapFirst = _CaptureRegion2()
 				Local $resultHere = DllCall($pFuncLib, "str", "CheckConditionForWeakBase", "ptr", $hBitmapFirst, "int", ($iCmbWeakMortar[$x] + 1), "int", ($iCmbWeakWizTower[$x] + 1), "int", 10)
@@ -185,7 +183,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 				EndIf
 			EndIf
 		EndIf
-		If $bBtnAttackNowPressed = True Then ExitLoop
+		;If $bBtnAttackNowPressed = True Then ExitLoop
 		If $OptTrophyMode = 1 Then ;Enables Triple Mode Settings ;---compare resources
 			If SearchTownHallLoc() Then ; attack this base anyway because outside TH found to snipe
 				SetLog(_PadStringCenter(" TH Outside Found! ", 50, "~"), $COLOR_GREEN)
@@ -193,13 +191,31 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 				ExitLoop
 			EndIf
 		EndIf
+		;If $bBtnAttackNowPressed = True Then ExitLoop
+		For $x = 0 To $iModeCount - 1
+			If ($x = $iCmbSearchMode Or $iCmbSearchMode = 2) And $iChkWeakBase[$x] = 1 And Not $isWeakBase[$x] Then
+				$noMatchTxt &= ", Not a Weak Base for " & $sModeText[$x]
+			EndIf
+		Next
+		If $matchDB And Not $dbBase Then
+			$noMatchTxt &= ", Not a " & $sModeText[$DB]
+		ElseIf $matchLB And $dbBase Then
+			$noMatchTxt &= ", Not a " & $sModeText[$LB]
+		EndIf
+ 		If $noMatchTxt <> "" Then
+			SetLog(_PadStringCenter(" " & StringMid($noMatchTxt, 3) & " ", 50, "~"), $COLOR_PURPLE)
+		EndIf
+		;If $bBtnAttackNowPressed = True Then ExitLoop
+		If $iChkAttackNow = 1 Then
+			If _Sleep(1000 * $iAttackNowDelay) Then Return ; add human reaction time on AttackNow button function
+		EndIf
 		If $bBtnAttackNowPressed = True Then ExitLoop
-		Click(825, 527, 1, 0, "#0155") ;Click Next
+		Click(825, 527,1,0,"#0155") ;Click Next
 		If _Sleep(500) Then Return
 		If isGemOpen(True) = True Then
 			Setlog(" Not enough gold to keep searching.....", $COLOR_RED)
-			Click(585, 252, 1, 0, "#0156") ; Click close gem window "X"
-			$OutOfGold = 1 ; Set flag for out of gold to search for attack
+			Click(585, 252,1,0,"#0156")  ; Click close gem window "X"
+			$OutOfGold = 1  ; Set flag for out of gold to search for attack
 			Return
 		EndIf
 		$iSkipped = $iSkipped + 1
@@ -254,6 +270,7 @@ EndFunc   ;==>VillageSearch
 
 Func IsSearchModeActive($pMode)
 	If $iChkEnableAfter[$pMode] = 0 Then Return True
+	If $SearchCount = $iEnableAfterCount[$pMode] Then SetLog(_PadStringCenter(" " & $sModeText[$pMode] & " search conditions are activated! ", 50, "~"), $COLOR_BLUE)
 	If $SearchCount >= $iEnableAfterCount[$pMode] Then Return True
 	Return False
-EndFunc   ;==>IsSearchModeActive
+EndFunc

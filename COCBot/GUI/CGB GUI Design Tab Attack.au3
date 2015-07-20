@@ -22,7 +22,7 @@ $tabAttack = GUICtrlCreateTabItem("Attack")
 	$grpDeadBaseDeploy = GUICtrlCreateGroup("DeadBase Deploy", $x - 20, $y - 20, 225, 295);95)
 		$lblDBDeploy = GUICtrlCreateLabel("Attack on:", $x, $y + 5, -1, -1)
 		$cmbDBDeploy = GUICtrlCreateCombo("", $x + 55, $y, 120, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-			GUICtrlSetTip(-1, "Attack on a single side, penetrates through base" & @CRLF & "Attack on two sides, penetrates through base" & @CRLF & "Attack on three sides, gets outer and some inside of base", "Select the No. of sides to attack on.")
+			GUICtrlSetTip(-1, "Attack on a single side, penetrates through base" & @CRLF & "Attack on two sides, penetrates through base" & @CRLF & "Attack on three sides, gets outer and some inside of base" & @CRLF & "Attack on all sides equally, gets most of outer base", "Select the No. of sides to attack on.")
 			GUICtrlSetData(-1, "one side|two sides|three sides|all sides equally", "all sides equally")
 		$y += 25
 		$lblDBSelectTroop=GUICtrlCreateLabel("Troops:",$x, $y + 5, -1 , -1)

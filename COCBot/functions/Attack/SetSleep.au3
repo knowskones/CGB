@@ -18,7 +18,7 @@ Func SetSleep($type)
 			If $iChkRandomspeedatk[$iMatchMode] = 1 Then
 				Return Round(Random(1, 10)) * 10
 			Else
-				Return ($iCmbWaveDelay[$iMatchMode] + 1) * 10
+				Return ($iCmbUnitDelay[$iMatchMode] + 1) * 10
 			EndIf
 		Case 1
 			If $iChkRandomspeedatk[$iMatchMode] = 1 Then

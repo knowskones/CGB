@@ -177,6 +177,7 @@ Func btnStart()
 		$MeetCondStop = False
 		CreateLogFile()
 		CreateAttackLogFile()
+
 		SaveConfig()
 		readConfig()
 		applyConfig()

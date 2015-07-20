@@ -33,6 +33,10 @@ $tabSearch = GUICtrlCreateTabItem("Search")
 		$chkAlertSearch = GUICtrlCreateCheckbox("Alert me when a Base is found.", $x - 10, $y, -1, -1, $BS_MULTILINE)
 			GUICtrlSetTip(-1, "Check this if you want an Audio alarm & a Balloon Tip when a Base to attack is found.")
 			GUICtrlSetState(-1, $GUI_CHECKED)
+#cs		$y += 21
+		$btnSearchMode = GUICtrlCreateButton("Search Mode", $x + 90, $y, 100, 25)
+			GUICtrlSetOnEvent(-1, "btnSearchMode")
+#ce			GUICtrlSetTip(-1, "Does not attack. Searches for a Village that meets conditions.")
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 

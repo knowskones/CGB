@@ -26,18 +26,18 @@ Func BoostBarracks()
 			SetLog("Boosting Barracks", $COLOR_BLUE)
 
 
-			Click(1, 1, 1, 0, "#0157")
+			Click(1, 1,1,0,"#0157")
 			If _Sleep(1000) Then ExitLoop
-			Click($barrackPos[0], $barrackPos[1], 1, 0, "#0158")
+			Click($barrackPos[0], $barrackPos[1],1,0,"#0158")
 			If _Sleep(1000) Then ExitLoop
 			_CaptureRegion()
 			$Boost = _PixelSearch(410, 603, 493, 621, Hex(0xfffd70, 6), 10)
 			If IsArray($Boost) Then
-				Click($Boost[0], $Boost[1], 1, 0, "#0159")
+				Click($Boost[0], $Boost[1],1,0,"#0159")
 				If _Sleep(1000) Then Return
 				_CaptureRegion()
 				If _ColorCheck(_GetPixelColor(420, 375), Hex(0xd2ec78, 6), 20) Then
-					Click(420, 375, 1, 0, "#0160")
+					Click(420, 375,1,0,"#0160")
 					If _Sleep(2000) Then Return
 					_CaptureRegion()
 					If _ColorCheck(_GetPixelColor(586, 267), Hex(0xd80405, 6), 20) Then
@@ -51,7 +51,7 @@ Func BoostBarracks()
 					SetLog("Barracks are already Boosted", $COLOR_RED)
 				EndIf
 				If _Sleep(500) Then ExitLoop
-				Click(1, 1, 1, 0, "#0161")
+				Click(1, 1,1,0,"#0161")
 			Else
 				SetLog("Barracks are already Boosted", $COLOR_RED)
 				If _Sleep(1000) Then Return
@@ -80,16 +80,16 @@ Func BoostSpellFactory()
 			LocateSpellFactory()
 			SaveConfig()
 		Else
-			Click($SFPos[0], $SFPos[1], 1, 0, "#0162")
+			Click($SFPos[0], $SFPos[1],1,0,"#0162")
 			If _Sleep(600) Then Return
 			_CaptureRegion()
 			$Boost = _PixelSearch(382, 603, 440, 621, Hex(0xfffd70, 6), 10)
 			If IsArray($Boost) Then
-				Click($Boost[0], $Boost[1], 1, 0, "#0163")
+				Click($Boost[0], $Boost[1],1,0,"#0163")
 				If _Sleep(1000) Then Return
 				_CaptureRegion()
 				If _ColorCheck(_GetPixelColor(420, 375), Hex(0xD0E978, 6), 20) Then
-					Click(420, 375, 1, 0, "#0164")
+					Click(420, 375,1,0,"#0164")
 					If _Sleep(2000) Then Return
 					_CaptureRegion()
 					If _ColorCheck(_GetPixelColor(586, 267), Hex(0xd80405, 6), 20) Then
@@ -103,7 +103,7 @@ Func BoostSpellFactory()
 					SetLog("Factory is already Boosted", $COLOR_RED)
 				EndIf
 				If _Sleep(500) Then Return
-				Click(1, 1, 1, 0, "#0165")
+				Click(1, 1,1,0,"#0165")
 			Else
 				SetLog("Factory is already Boosted", $COLOR_RED)
 				If _Sleep(1000) Then Return
