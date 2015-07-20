@@ -147,7 +147,7 @@ Func DELow()
 		$DarkE = getDarkElixirVillageSearch(48, 125)
 		If _Sleep(50) Then Return
 		If Number($DarkE) < (Number($searchDark) * (Number($DELowEndMin) / 100)) Then ; Second check if Dark Elixer is below set minimum
-			If $DEEndAq =1 And $dropQueen And $checkQPower = False Then
+			If $DEEndAq =1 And $dropQueen = True And $checkQPower = False Then
 				If $iActivateKQCondition = "Auto" Then
 					$DarkLow = 1
 					SetLog("Low De. De = ( " & $DarkE & " ) and AQ health Low. Return to protect Royals.  Returning immediately", $COLOR_GREEN)
@@ -158,7 +158,7 @@ Func DELow()
 					Return False
 				EndIf
 			EndIf
-			If $DEEdge = 1 And $dropKing And $checkKPower = False Then
+			If $DEEndBk = 1 And $dropKing = True And $checkKPower = False Then
 				If $iActivateKQCondition = "Auto" Then
 					$DarkLow = 1
 					SetLog("Low De. De = ( " & $DarkE & " ) and BK health Low. Return to protect Royals.  Returning immediately", $COLOR_GREEN)
@@ -183,7 +183,11 @@ Func DELow()
 			If $DEEndAq = 0 And $DEEndBk = 0 And $DEEndOneStar = 0 Then
 				SetLog("Low De. De = ( " & $DarkE & " ). Return to protect Royals.  Returning immediately", $COLOR_GREEN)
 				Return False
+			Else
+				SetLog("Low De. De = ( " & $DarkE & " ). Waiting for others conditions to be met", $COLOR_GREEN)
 			EndIf
+		Else
+			SetLog("DE checked twice to ensure accuracy. Bot failed Second Check.", $COLOR_GREEN)
 		EndIf
 	Else
 		$DarkLow = 0
