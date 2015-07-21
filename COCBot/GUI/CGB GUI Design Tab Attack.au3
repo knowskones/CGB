@@ -158,7 +158,7 @@ $tabAttack = GUICtrlCreateTabItem("Attack")
 			$txtTip = "Drop spell while doing DE attack (only work with DE side attack ATM)"
  			GUICtrlSetTip(-1, $txtTip)
 		$cmbABDEUseSpellType = GUICtrlCreateCombo("", $x - 30, $y, 95, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-			GUICtrlSetData(-1, "| |Heal", "Heal")
+			GUICtrlSetData(-1, "Healing|Rage", "Healing")
 	$x -= 70
 	$y = 335
 		GUICtrlCreateIcon($pIconLib, $eIcnKing, $x, $y, 24, 24)
