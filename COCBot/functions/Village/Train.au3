@@ -680,8 +680,6 @@ Func Train()
 				$Spellslot = 0
 			ElseIf $iChkDEUseSpell = 1 Then
 				$Spellslot = $iChkDEUseSpellType + 1
-				; only work on Heal Spell for now, until the Healing and Rage Spell is correctly detected
-				$Spellslot = 1
 			EndIf
 			If $Spellslot <> -1 Then
 				While 1
