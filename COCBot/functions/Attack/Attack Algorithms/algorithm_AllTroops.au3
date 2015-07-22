@@ -139,7 +139,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 	If ($nbSides = 0) Then Return
 	If _Sleep(1000) Then Return
 
-	If $iMatchMode = $LB And $iChkDeploySettings[$LB] = 4 Then   ; Customise DE side wave deployment here
+	If $DESideFound = True Then   ; Customise DE side wave deployment here
 		Local $listInfoDeploy[14][5] = [[$eGiant, $nbSides, 1, 1, 0] _
 			, [$eWall, $nbSides, 1, 1, 1] _
 			, [$eBarb, $nbSides, 1, 2, 0] _
@@ -185,7 +185,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 			;Else
 			;	 LauchTroop($i, $nbSides, 0, 1, 2)
 			;EndIf
-			If _Sleep(500) Then Return
+			If _Sleep(200) Then Return
 		Next
 	Next
 

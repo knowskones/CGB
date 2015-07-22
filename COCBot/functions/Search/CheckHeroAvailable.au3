@@ -1,7 +1,4 @@
 	Func LiveRoyalFilter()
-		If $LBHeroFilter = 1 Then
-			RevertRoyalFilter()
-		EndIf
 		GetResources() ;Reads Resource Values ;waits until it can read army
 		$searchGold2 = 0
 		PrepareAttack(True)
@@ -29,6 +26,9 @@
 			$LBHeroFilter = 1
 		Else
 			SetLog("Live Base Normal Mode Enabled", $COLOR_BLUE)
+			If $LBHeroFilter = 1 Then
+				RevertRoyalFilter()
+			EndIf
 			$LBHeroFilter = 0
 		EndIf
 

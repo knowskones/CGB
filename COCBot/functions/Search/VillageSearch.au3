@@ -15,9 +15,13 @@
 ; ===============================================================================================================================
 Func VillageSearch() ;Control for searching a village that meets conditions
 	$iSkipped = 0
-
+	$DESideFound = False
 	If $iCmbSearchMode > 0 and ($LBAQFilter = 1 Or $LBBKFilter = 1) Then
-		LiveRoyalFilter()
+			If $Is_ClientSyncError = True  And $LBHeroFilter = 0 Then
+				SetLog("Client Sync error Heros already confirmed awake. Skipping Check "), $COLOR_BLUE)
+			Else
+				LiveRoyalFilter()
+			EndIf
 	EndIf
 
 	If $Is_ClientSyncError = False Then
@@ -163,11 +167,13 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 				If CheckfoundorcoreDE() = True Then
 					SetLog(_PadStringCenter(" DE Side Base Found!- ", 50, "~"), $COLOR_GREEN)
 					$iMatchMode = $LB
+					$DESideFound = True
 					ExitLoop
 				EndIf
 			ElseIf $iChkDeploySettings[$LB] = 4 Then
 				SetLog(_PadStringCenter(" DE Side Base Found! ", 50, "~"), $COLOR_GREEN)
 				$iMatchMode = $LB
+				$DESideFound = True
 				ExitLoop
 			Else
 				SetLog(_PadStringCenter(" Live Base Found! ", 50, "~"), $COLOR_GREEN)

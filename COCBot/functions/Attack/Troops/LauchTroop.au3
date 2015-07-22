@@ -198,7 +198,7 @@ Func LaunchTroop2($listInfoDeploy, $CC, $King, $Queen)
 	Else
 		For $i = 0 To UBound($listInfoDeploy) - 1
 			If (IsString($listInfoDeploy[$i][0]) And ($listInfoDeploy[$i][0] = "CC" Or $listInfoDeploy[$i][0] = "HEROES" Or $listInfoDeploy[$i][0] = "SPELL")) Then
-				If $iMatchMode = $LB And $iChkDeploySettings[$LB] = 4 Then
+				If $DESideFound = True Then
 					Local $RandomEdge = $Edges[$DEEdge]
 					Local $RandomXY = 2
 				Else

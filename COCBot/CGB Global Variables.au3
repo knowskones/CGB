@@ -593,7 +593,7 @@ Global $League[16][4] = [ _
 		["180000", "Champion", "1200", "CA"]]
 
 ;De Side Switch and End Early
-Global $DEEdge, $DarkLow
+Global $DEEdge, $DarkLow, $DESideFound
 Global $saveiChkTimeStopAtk, $saveiChkTimeStopAtk2, $saveichkEndOneStar, $saveichkEndTwoStars
 Global $DESideEB, $DELowEndMin, $DisableOtherEBO
 Global $DEEndAq, $DEEndBk, $DEEndOneStar
@@ -601,7 +601,7 @@ Global $SpellDP[2] = [0, 0]; Spell drop point for DE attack
 ;Location for BK & AQ for boosting
 Global $KingPos[2], $QueenPos[2]
 ;Hero Healing Filter
-Global $LBsave[17], $LBHeroFilter, $LBAQFilter, $LBBKFilter, $iSkipCentreDE, $iSkipUndetectedDE
+Global $LBsave[17], $LBHeroFilter, $LBAQFilter, $LBBKFilter, $iSkipCentreDE, $iSkipUndetectedDE, $DECorepix = 15
 Global 	$iCmbMeetGEHero, $iChkMeetDEHero, $iChkMeetTrophyHero, $iChkMeetTHHero, $iChkMeetTHOHero, $iChkWeakBaseHero, $iChkMeetOneHero, $iEnableAfterCountHero, $iMinGoldHero
 Global $iMinElixirHero, $iMinGoldPlusElixirHero,$iMinDarkHero, $iMinTrophyHero, $iCmbTHHero, $iCmbWeakMortarHero, $iCmbWeakWizTowerHero, $iMaxTHHero
 
