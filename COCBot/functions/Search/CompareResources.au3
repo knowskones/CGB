@@ -167,6 +167,19 @@ Func CompareResources($pMode) ;Compares resources and returns true if conditions
 	WEnd
 	$SearchTHLResult = 0
 	If $searchTH <> "-" And $searchTH <= $YourTH Then $SearchTHLResult = 1
+	If $THString = "" And ($OptTrophyMode = 1 Or $bullymodeactive = 1 Then
+		$searchTH = checkTownhallADV()
+		If SearchTownHallLoc() = False And $searchTH <> "-" Then
+			$THLoc = "In"
+		ElseIf $searchTH <> "-" Then
+			$THLoc = "Out"
+		Else
+			$THLoc = $searchTH
+			$THx = 0
+			$THy = 0
+		EndIf
+		$THString = " [TH]:" & StringFormat("%2s", $searchTH) & ", " & $THLoc
+	EndIf
 	If $CompRes = True Then
 		Return True
 	Else
