@@ -73,8 +73,8 @@ Func GoldElixirChangeEBO()
 		CheckHeroesHealth()
 
 		;DE SPECIAL END EARLY
-		If $DESideFound = True And $DESideEB Then
-			If $dropQueen Or $dropKing Then DELow()
+		If $DESideFound = True And $DESideEB = 1 Then
+			If $dropQueen = True Or $dropKing = True Then DELow()
 			If $DarkLow = 1 Then ExitLoop
 		EndIf
 		If $checkKPower Or $checkQPower Or $DarkLow = 2 Then
@@ -154,7 +154,7 @@ Func GoldElixirChangeEBO()
 	WEnd ; END MAIN LOOP
 
 	;Priority Check... Exit To protect Hero Health
-	If $DESideFound = True And $DESideEB And $DarkLow = 1 Then
+	If $DESideFound = True And $DESideEB = 1 And $DarkLow = 1 Then
 		SetLog("Returning Now -DE-", $COLOR_GREEN)
 		Return False
 	EndIf

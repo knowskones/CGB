@@ -129,6 +129,7 @@ Func runBot() ;Bot that runs everything in order
 				checkMainScreen(False)
 				If $OutOfGold = 1  And ($GoldCount >= $itxtRestartGold) Then  ; check if enough gold to begin searching again
 					$OutOfGold = 0  ; reset out of gold flag
+
 					Setlog("Switching back to normal after no gold to search ...", $COLOR_RED)
 					$ichkBotStop = 0  ; reset halt attack variable
 					;GUICtrlSetState($chkBotStop, $GUI_UNCHECKED)

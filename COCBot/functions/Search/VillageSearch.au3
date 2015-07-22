@@ -16,9 +16,10 @@
 Func VillageSearch() ;Control for searching a village that meets conditions
 	$iSkipped = 0
 	$DESideFound = False
+
 	If $iCmbSearchMode > 0 and ($LBAQFilter = 1 Or $LBBKFilter = 1) Then
 			If $Is_ClientSyncError = True  And $LBHeroFilter = 0 Then
-				SetLog("Client Sync error Heros already confirmed awake. Skipping Check "), $COLOR_BLUE)
+				SetLog("Client Sync error Heros already confirmed awake. Skipping Check ", $COLOR_BLUE)
 			Else
 				LiveRoyalFilter()
 			EndIf
@@ -135,34 +136,22 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 		Local $dbBase = False
 		Local $matchDB = False
 		Local $matchLB = False
-		Local $isWeakBase[$iModeCount]
-		For $x = 0 To $iModeCount - 1
-			$isWeakBase[$x] = False
-			If ($x = $iCmbSearchMode Or $iCmbSearchMode = 2) And $iChkWeakBase[$x] = 1 Then
-				_WinAPI_DeleteObject($hBitmapFirst)
-				$hBitmapFirst = _CaptureRegion2()
-				Local $resultHere = DllCall($pFuncLib, "str", "CheckConditionForWeakBase", "ptr", $hBitmapFirst, "int", ($iCmbWeakMortar[$x] + 1), "int", ($iCmbWeakWizTower[$x] + 1), "int", 10)
-				If $resultHere[0] = "Y" Then
-					$isWeakBase[$x] = True
-				EndIf
-			EndIf
-		Next
+		$searchTH = "-"
+		$THString = ""
 		If $iCmbSearchMode = 0 Then
-			$matchDB = CompareResources($DB, $isWeakBase[$DB])
+			$matchDB = CompareResources($DB)
 		ElseIf $iCmbSearchMode = 1 Then
-			$matchLB = CompareResources($LB, $isWeakBase[$LB])
+			$matchLB = CompareResources($LB)
 		Else
-			If IsSearchModeActive($DB) Then $matchDB = CompareResources($DB, $isWeakBase[$DB])
-			If IsSearchModeActive($LB) Then $matchLB = CompareResources($LB, $isWeakBase[$LB])
+			If IsSearchModeActive($DB) Then $matchDB = CompareResources($DB)
+			If IsSearchModeActive($LB) Then $matchLB = CompareResources($LB)
 		EndIf
-		If $matchDB Or $matchLB Then
-			$dbBase = checkDeadBase()
-		EndIf
-		If $matchDB And $dbBase Then
+		SetLog(StringFormat("%3s", $SearchCount) & "> [G]:" & StringFormat("%7s", $searchGold) & " [E]:" & StringFormat("%7s", $searchElixir) & " [D]:" & StringFormat("%5s", $searchDark) & " [T]:" & StringFormat("%2s", $searchTrophy) & $THString, $COLOR_BLACK, "Lucida Console", 7.5)
+		If $matchDB And checkDeadBase() = True Then
 			SetLog(_PadStringCenter(" Dead Base Found! ", 50, "~"), $COLOR_GREEN)
 			$iMatchMode = $DB
 			ExitLoop
-		ElseIf $matchLB And Not $dbBase Then
+		ElseIf $matchLB Then
 			If $iChkDeploySettings[$LB] = 4 And ($iSkipUndetectedDE > 0 Or $iSkipCentreDE > 0) Then
 				If CheckfoundorcoreDE() = True Then
 					SetLog(_PadStringCenter(" DE Side Base Found!- ", 50, "~"), $COLOR_GREEN)
@@ -198,11 +187,6 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			EndIf
 		EndIf
 		;If $bBtnAttackNowPressed = True Then ExitLoop
-		For $x = 0 To $iModeCount - 1
-			If ($x = $iCmbSearchMode Or $iCmbSearchMode = 2) And $iChkWeakBase[$x] = 1 And Not $isWeakBase[$x] Then
-				$noMatchTxt &= ", Not a Weak Base for " & $sModeText[$x]
-			EndIf
-		Next
 		If $matchDB And Not $dbBase Then
 			$noMatchTxt &= ", Not a " & $sModeText[$DB]
 		ElseIf $matchLB And $dbBase Then

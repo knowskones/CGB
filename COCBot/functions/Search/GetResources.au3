@@ -80,38 +80,6 @@ Func GetResources() ;Reads resources
 		EndIf
 	EndIf
 
-	Local $THString = ""
-	$searchTH = "-"
-	If ($OptBullyMode = 1 And $SearchCount >= $ATBullyMode) Or $OptTrophyMode = 1 Or ($iCmbSearchMode <> $LB And ($iChkMeetTH[$DB] = 1 Or $iChkMeetTHO[$DB] = 1)) Or ($iCmbSearchMode <> $DB And ($iChkMeetTH[$LB] = 1 Or $iChkMeetTHO[$LB] = 1)) Then
-		If ($iCmbSearchMode <> $LB And $iChkMeetTHO[$DB] = 1) Or ($iCmbSearchMode <> $DB And $iChkMeetTHO[$LB] = 1) Or $OptTrophyMode = 1 Then
-			$searchTH = checkTownhallADV()
-			If $searchTH = "-" Then
-				$searchTH = checkTownhall()
-				If $searchTH = "-" Then
-					Sleep(1000)
-					$searchTH = checkTownhallADV()
-					If $searchTH = "-" Then
-						$searchTH = checkTownhall()
-					EndIf
-				EndIf
-			EndIf
-		Else
-			$searchTH = checkTownhall()
-		EndIf
-
-		If SearchTownHallLoc() = False And $searchTH <> "-" Then
-			$THLoc = "In"
-		ElseIf $searchTH <> "-" Then
-			$THLoc = "Out"
-		Else
-			$THLoc = $searchTH
-			$THx = 0
-			$THy = 0
-		EndIf
-		$THString = " [TH]:" & StringFormat("%2s", $searchTH) & ", " & $THLoc
-	EndIf
-
 	$SearchCount += 1 ; Counter for number of searches
-	SetLog(StringFormat("%3s", $SearchCount) & "> [G]:" & StringFormat("%7s", $searchGold) & " [E]:" & StringFormat("%7s", $searchElixir) & " [D]:" & StringFormat("%5s", $searchDark) & " [T]:" & StringFormat("%2s", $searchTrophy) & $THString, $COLOR_BLACK, "Lucida Console", 7.5)
 
 EndFunc   ;==>GetResources
