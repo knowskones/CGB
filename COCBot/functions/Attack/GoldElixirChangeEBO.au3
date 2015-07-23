@@ -77,7 +77,7 @@ Func GoldElixirChangeEBO()
 			$DisableHeroEBO += 1
 			If $dropQueen = True Or $dropKing = True Then
 				DELow()
-			ElseIf $DisableHeroEBO = 1
+			ElseIf $DisableHeroEBO = 1 Then
 				SetLog("Disabled DE EBO as Royals not used", $COLOR_GREEN)
 			EndIf
 			If $DarkLow = 1 Then ExitLoop
