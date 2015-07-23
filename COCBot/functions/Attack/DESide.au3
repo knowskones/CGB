@@ -189,7 +189,7 @@ Func DELow()
 			SetLog("De EBO Check. Second DE check failed Read as De = ( " & $DarkE & " )", $COLOR_GREEN)
 		EndIf
 	Else
-		SetLog("De EBO Check. De = ( " & $DarkE & " ) waiting for " & Round((Number($DELowEndMin) / 100)[,0]) & " Before exiting", $COLOR_GREEN)
+		SetLog("De EBO Check. De = ( " & $DarkE & " ) waiting for " & Round((Number($searchDark) * (Number($DELowEndMin) / 100)),0) & " Before exiting", $COLOR_GREEN)
 		$DarkLow = 0
 	EndIf
 EndFunc   ;==>DELow
