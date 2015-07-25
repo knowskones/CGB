@@ -133,6 +133,7 @@ EndFunc   ;==>DExy
 Func DELow()
 	Local $DarkE = ""
 	Local $Dchk = 0
+	Local $EndHero80perc = 1
 	While $DarkE = "" ;~~~~~~~~Loop 10x or until Dark Elixer is Readable.
 		$DarkE = getDarkElixirVillageSearch(48, 125)
 		$Dchk += 1
@@ -147,26 +148,50 @@ Func DELow()
 		$DarkE = getDarkElixirVillageSearch(48, 125)
 		If _Sleep(50) Then Return
 		If Number($DarkE) < (Number($searchDark) * (Number($DELowEndMin) / 100)) Then ; Second check if Dark Elixer is below set minimum
-			If $DEEndAq = 1 And $dropQueen = True And $checkQPower = False Then
+			If $DEEndAq = 1 And $dropQueen = True Then
 				If $iActivateKQCondition = "Auto" Then
-					$DarkLow = 1
-					SetLog("Low De. De = ( " & $DarkE & " ) and AQ health Low. Return to protect Royals.  Returning immediately", $COLOR_GREEN)
-					Return False
-				ElseIf Not _ColorCheck(_GetPixelColor(68 + (72 * $Queen), 572, True), Hex(0x72F50B, 6), 120, "Heroes") Then
-					$DarkLow = 1
-					SetLog("Low De. De = ( " & $DarkE & " ) and AQ health Low. Return to protect Royals.  Returning immediately", $COLOR_GREEN)
-					Return False
+					If $checkQPower = False Then
+						$DarkLow = 1
+						SetLog("Low De. De = ( " & $DarkE & " ) and AQ health Low. Return to protect Royals.  Returning immediately", $COLOR_GREEN)
+						Return False
+					ElseIf $EndHero80perc = 1 And Not _ColorCheck(_GetPixelColor(87 + (72 * $Queen), 572, True), Hex(0x72F50B, 6), 120, "Heroes") Then
+						$DarkLow = 1
+						SetLog("Low De. De = ( " & $DarkE & " ) and AQ health 80%. Return to protect Royals.  Returning immediately", $COLOR_GREEN)
+						Return False
+					EndIf
+				Else
+					If $EndHero80perc = 1 And Not _ColorCheck(_GetPixelColor(87 + (72 * $Queen), 572, True), Hex(0x72F50B, 6), 120, "Heroes") Then
+						$DarkLow = 1
+						SetLog("Low De. De = ( " & $DarkE & " ) and AQ health Low. Return to protect Royals.  Returning immediately", $COLOR_GREEN)
+						Return False
+					ElseIf Not _ColorCheck(_GetPixelColor(68 + (72 * $Queen), 572, True), Hex(0x72F50B, 6), 120, "Heroes") Then
+						$DarkLow = 1
+						SetLog("Low De. De = ( " & $DarkE & " ) and AQ health 80%. Return to protect Royals.  Returning immediately", $COLOR_GREEN)
+						Return False
+					EndIf
 				EndIf
 			EndIf
-			If $DEEndBk = 1 And $dropKing = True And $checkKPower = False Then
+			If $DEEndBk = 1 And $dropKing = True Then
 				If $iActivateKQCondition = "Auto" Then
-					$DarkLow = 1
-					SetLog("Low De. De = ( " & $DarkE & " ) and BK health Low. Return to protect Royals.  Returning immediately", $COLOR_GREEN)
-					Return False
-				ElseIf Not _ColorCheck(_GetPixelColor(68 + (72 * $King), 572, True), Hex(0x4FD404, 6), 120, "Heroes") Then
-					$DarkLow = 1
-					SetLog("Low De. De = ( " & $DarkE & " ) and BK health Low. Return to protect Royals.  Returning immediately", $COLOR_GREEN)
-					Return False
+					If $checkKPower = False Then
+						$DarkLow = 1
+						SetLog("Low De. De = ( " & $DarkE & " ) and BK health Low. Return to protect Royals.  Returning immediately", $COLOR_GREEN)
+						Return False
+					ElseIf $EndHero80perc = 1 And Not _ColorCheck(_GetPixelColor(87 + (72 * $King), 572, True), Hex(0x4FD404, 6), 120, "Heroes") Then
+						$DarkLow = 1
+						SetLog("Low De. De = ( " & $DarkE & " ) and BK health 80%. Return to protect Royals.  Returning immediately", $COLOR_GREEN)
+						Return False
+					EndIf
+				Else
+					If $EndHero80perc = 1 And Not _ColorCheck(_GetPixelColor(87 + (72 * $King), 572, True), Hex(0x4FD404, 6), 120, "Heroes") Then
+						$DarkLow = 1
+						SetLog("Low De. De = ( " & $DarkE & " ) and BK health 80%. Return to protect Royals.  Returning immediately", $COLOR_GREEN)
+						Return False
+					ElseIf Not _ColorCheck(_GetPixelColor(68 + (72 * $King), 572, True), Hex(0x4FD404, 6), 120, "Heroes") Then
+						$DarkLow = 1
+						SetLog("Low De. De = ( " & $DarkE & " ) and BK health Low. Return to protect Royals.  Returning immediately", $COLOR_GREEN)
+						Return False
+					EndIf
 				EndIf
 			EndIf
 			If $DEEndOneStar = 1 Then

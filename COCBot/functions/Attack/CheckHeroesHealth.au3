@@ -29,7 +29,6 @@ Func CheckHeroesHealth()
 		If $checkKPower Then
 			If $debugSetlog = 1 Then Setlog(" King _GetPixelColor(" & $aKingHealthCopy[0] & "," & $aKingHealthCopy[1] & "): " & $KingPixelColor)
 			If _CheckPixel($aKingHealthCopy, $bCapturePixel, "Red") Then
-
 				SetLog("King is getting weak, Activating King's power", $COLOR_BLUE)
 				SelectDropTroop($King)
 				$checkKPower = False
