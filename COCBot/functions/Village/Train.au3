@@ -612,7 +612,7 @@ Func Train()
 	If $iChkLightSpell = 1 Or $iChkDEUseSpell = 1 Then
 		$iBarrHere = 0
 		While Not (isSpellFactory())
-			If IsArray($PrevPos) Then _TrainMoveBtn(-1) ;click prev button
+			_TrainMoveBtn(-1) ;click prev button
 			$iBarrHere += 1
 			If _Sleep(1000) Then ExitLoop
 			If $iBarrHere = 7 Then ExitLoop

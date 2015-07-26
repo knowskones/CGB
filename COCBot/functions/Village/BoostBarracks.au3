@@ -16,7 +16,7 @@
 Func BoostBarracks()
 	If $bTrainEnabled = False Then Return
 
-	If (GUICtrlRead($cmbBoostBarracks) > 0) And ($boostsEnabled = 1) Then
+	If _GUICtrlComboBox_GetCurSel($cmbBoostBarracks) > 0 And $boostsEnabled = 1 Then
 		If $barrackPos[0] = "" Then
 			LocateBarrack()
 			SaveConfig()
@@ -43,7 +43,7 @@ Func BoostBarracks()
 						_GUICtrlComboBox_SetCurSel($cmbBoostBarracks, 0)
 						SetLog("Not enough gems", $COLOR_RED)
 					Else
-						If (GUICtrlRead($cmbBoostBarracks) > 5 Then
+						If _GUICtrlComboBox_GetCurSel($cmbBoostBarracks) > 5 Then
 							SetLog('Boost completed. Remaining :' & (GUICtrlRead($cmbBoostBarracks)), $COLOR_GREEN)
 						Else
 							_GUICtrlComboBox_SetCurSel($cmbBoostBarracks, (GUICtrlRead($cmbBoostBarracks) - 1))
@@ -62,6 +62,8 @@ Func BoostBarracks()
 
 			ExitLoop
 		WEnd
+	Else
+		SetLog(_GUICtrlComboBox_GetCurSel($cmbBoostBarracks))
 	EndIf
 	If _Sleep(500) Then Return
 	checkMainScreen(False)  ; Check for errors during function
@@ -73,7 +75,7 @@ Func BoostSpellFactory()
 
 	If $bTrainEnabled = False Then Return
 
-	If (GUICtrlRead($cmbBoostSpellFactory) > 0) And ($boostsEnabled = 1) Then
+	If _GUICtrlComboBox_SetCurSel($cmbBoostSpellFactory) > 0 And ($boostsEnabled = 1) Then
 		If $barrackPos[0] = "" Then
 			LocateBarrack()
 			SaveConfig()
@@ -99,7 +101,7 @@ Func BoostSpellFactory()
 						_GUICtrlComboBox_SetCurSel($cmbBoostSpellFactory, 0)
 						SetLog("Not enough gems", $COLOR_RED)
 					Else
-						If (GUICtrlRead($cmbBoostSpellFactory) > 5 Then
+						If _GUICtrlComboBox_SetCurSel($cmbBoostSpellFactory) > 5 Then
 							SetLog('Boost completed. Remaining :' & (GUICtrlRead($cmbBoostSpellFactory)), $COLOR_GREEN)
 						Else
 							_GUICtrlComboBox_SetCurSel($cmbBoostSpellFactory, (GUICtrlRead($cmbBoostSpellFactory) - 1))
