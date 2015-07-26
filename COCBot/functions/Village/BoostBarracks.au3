@@ -44,7 +44,7 @@ Func BoostBarracks()
 						SetLog("Not enough gems", $COLOR_RED)
 					Else
 						If _GUICtrlComboBox_GetCurSel($cmbBoostBarracks) > 5 Then
-							SetLog('Boost completed. Remaining :' & (GUICtrlRead($cmbBoostBarracks)), $COLOR_GREEN)
+							SetLog('Boost completed. Remaining :' & GUICtrlRead($cmbBoostBarracks), $COLOR_GREEN)
 						Else
 							_GUICtrlComboBox_SetCurSel($cmbBoostBarracks, (GUICtrlRead($cmbBoostBarracks) - 1))
 							SetLog('Boost completed. Remaining :' & (GUICtrlRead($cmbBoostBarracks)), $COLOR_GREEN)
@@ -102,7 +102,7 @@ Func BoostSpellFactory()
 						SetLog("Not enough gems", $COLOR_RED)
 					Else
 						If _GUICtrlComboBox_SetCurSel($cmbBoostSpellFactory) > 5 Then
-							SetLog('Boost completed. Remaining :' & (GUICtrlRead($cmbBoostSpellFactory)), $COLOR_GREEN)
+							SetLog('Boost completed. Remaining :' & GUICtrlRead($cmbBoostSpellFactory), $COLOR_GREEN)
 						Else
 							_GUICtrlComboBox_SetCurSel($cmbBoostSpellFactory, (GUICtrlRead($cmbBoostSpellFactory) - 1))
 							SetLog('Boost completed. Remaining :' & (GUICtrlRead($cmbBoostSpellFactory)), $COLOR_GREEN)

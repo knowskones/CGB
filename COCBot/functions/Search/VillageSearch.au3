@@ -188,11 +188,6 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			EndIf
 		EndIf
 		;If $bBtnAttackNowPressed = True Then ExitLoop
-		For $x = 0 To $iModeCount - 1
-			If ($x = $iCmbSearchMode Or $iCmbSearchMode = 2) And $iChkWeakBase[$x] = 1 And Not $isWeakBase[$x] Then
-				$noMatchTxt &= ", Not a Weak Base for " & $sModeText[$x]
-			EndIf
-		Next
 		If $matchDB And Not $dbBase Then
 			$noMatchTxt &= ", Not a " & $sModeText[$DB]
 		ElseIf $matchLB And $dbBase Then
