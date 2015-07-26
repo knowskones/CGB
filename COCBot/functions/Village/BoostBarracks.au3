@@ -75,7 +75,7 @@ Func BoostSpellFactory()
 
 	If $bTrainEnabled = False Then Return
 
-	If _GUICtrlComboBox_SetCurSel($cmbBoostSpellFactory) > 0 And ($boostsEnabled = 1) Then
+	If _GUICtrlComboBox_GetCurSel($cmbBoostSpellFactory) > 0 And $boostsEnabled = 1 Then
 		If $barrackPos[0] = "" Then
 			LocateBarrack()
 			SaveConfig()
