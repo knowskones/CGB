@@ -41,6 +41,11 @@ $grpButtons = GUICtrlCreateGroup("https://gamebot.org - freeware bot -", $x - 5,
 		GUICtrlSetOnEvent(-1, "btnResume")
 		IF $btnColor then GUICtrlSetBkColor(-1,  0xFFA500)
 		GUICtrlSetState(-1, $GUI_HIDE)
+	$btnSearchMode = GUICtrlCreateButton("Search Mode", -1, -1, 90, 40-5)
+		$txtTip = "Does not attack. Searches for a Village that meets conditions."
+		GUICtrlSetTip(-1, $txtTip)
+		GUICtrlSetOnEvent(-1, "btnSearchMode")
+		IF $btnColor then GUICtrlSetBkColor(-1,  0xFFA500)
 	$btnMakeScreenshot = GUICtrlCreateButton("Photo", $x , $y + 45, 40, -1)
 		$txtTip = "Click here to take a snaphot of your village and save it to a file."
 		GUICtrlSetTip(-1, $txtTip)

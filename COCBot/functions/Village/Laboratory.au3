@@ -24,7 +24,7 @@ Func Laboratory()
 	If $ichkLab = 0 Then Return ; Lab upgrade not enabled.
 
 	If $icmbLaboratory = 0 Then
-		SetLog("Laboratory enabled, but no troop upgrade selected", $COLOR_FUCHSIA)
+		SetLog("Laboratory enabled, but no troop upgrade selected", $COLOR_MAROON)
 		Return False ; Nothing selected to upgrade
 	EndIf
 	If $aLabPos[0] = 0 Or $aLabPos[1] = 0 Then
@@ -64,7 +64,7 @@ Func Laboratory()
 		Click($ButtonPixel[0] + 40, $ButtonPixel[1] + 25,1,0,"#0198") ; Click Research Button
 		If _Sleep(750) Then Return ; Wait for window to open
 	Else
-		Setlog("Trouble finding research button, try again...", $COLOR_FUCHSIA)
+		Setlog("Trouble finding research button, try again...", $COLOR_MAROON)
 		ClickP($aTopLeftClient, 2, 200,"#0199")
 		Return False
 	EndIf
@@ -88,7 +88,7 @@ Func Laboratory()
 	EndIf
 	; check for upgrade in process
 	If _ColorCheck(_GetPixelColor(625, 280, True), Hex(0x60AC10, 6), 20) Or _ColorCheck(_GetPixelColor(660, 280, True), Hex(0x60AC10, 6), 20) Then
-		SetLog("Upgrade in progress, waiting for completion of other troops", $COLOR_FUCHSIA)
+		SetLog("Upgrade in progress, waiting for completion of other troops", $COLOR_MAROON)
 		If _Sleep(200) Then Return
 		If $debugSetlog <> 1 Then
 			ClickP($aTopLeftClient, 2, 200,"#0328")

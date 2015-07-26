@@ -51,11 +51,11 @@ AtkLogHead()
 #include "GUI\CGB GUI Control Tab EndBattle.au3"
 #include "GUI\CGB GUI Control Tab Donate.au3"
 #include "GUI\CGB GUI Control Tab Misc.au3"
+#include "GUI\CGB GUI Control Tab Profiles.au3"
 #include "GUI\CGB GUI Control Tab Upgrade.au3"
 #include "GUI\CGB GUI Control Tab Notify.au3"
 #include "GUI\CGB GUI Control Tab Expert.au3"
 #include "GUI\CGB GUI Control Tab Stats.au3"
-#include "GUI\CGB GUI Control Tab Profiles.au3"
 
 Func GUIControl($hWind, $iMsg, $wParam, $lParam)
 	Local $nNotifyCode = BitShift($wParam, 16)
@@ -239,9 +239,9 @@ Func _DonateBtn($FirstControl, $LastControl)
 EndFunc   ;==>_DonateBtn
 
 ;---------------------------------------------------
-If FileExists($sProfilePath & "\profile.ini") Then
+;~ If FileExists($sProfilePath & "\profile.ini") Then
 	_GUICtrlComboBox_SetCurSel($cmbProfile, Int($sCurrProfile) - 1)
-EndIf
+;~ EndIf
 If FileExists($config) Or FileExists($building) Then
 	readConfig()
 	applyConfig()

@@ -37,7 +37,7 @@ Func PrepareSearch() ;Click attack button and find match button, will break shie
 	If _Sleep(1000) Then Return
 	If $result = "" Then $Result = getAttackDisable(346, 182)  ; Grab Ocr for TakeABreak 2nd time if not found due slow PC
 	If $debugSetlog = 1 Then Setlog("Take-A-Break OCR result = " & $Result, $COLOR_PURPLE)
-	If $Result > 0 Then ; we may have Take-A-Break
+	If $Result <> "" Then ; we may have Take-A-Break
 		If StringInStr($Result, "disable") <> 0 Then ; double check just in case.
 			Setlog("Attacking disabled, Take-A-Break detected. Exiting CoC", $COLOR_RED)
 			; shut it down...

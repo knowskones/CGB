@@ -67,7 +67,7 @@ Func LocateClanCastle()
 			ClickP($aTopLeftClient)
 			Return
 		EndIf
-		$sInfo = BuildingInfo(250, 520)
+		$sInfo = BuildingInfo(242, 520)
 		If $sInfo[0] > 1 Or $sInfo[0] = "" Then
 			If  StringInStr($sInfo[1], "clan") = 0 Then
 				If $sInfo[0] = "" Then

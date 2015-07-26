@@ -18,9 +18,9 @@ Func Open()
 	SetLog("Starting BlueStacks", $COLOR_GREEN)
 
 	If $64Bit Then ;If 64-Bit
-		ShellExecute("C:\Program Files (x86)\BlueStacks\HD-StartLauncher.exe")
+		ShellExecute(@ProgramFilesDir & "\BlueStacks\HD-StartLauncher.exe")
 	Else ;If 32-Bit
-		ShellExecute("C:\Program Files\BlueStacks\HD-StartLauncher.exe")
+		ShellExecute(@ProgramFilesDir & "\BlueStacks\HD-StartLauncher.exe")
 	EndIf
 
 	Local $hTimer = TimerInit()
@@ -84,6 +84,10 @@ Func Initiate()
 		SetLog(_PadStringCenter(" " & $sBotTitle & " Powered by GameBot.org ", 50, "~"), $COLOR_PURPLE)
 		SetLog($Compiled & " running on " & @OSVersion & " " & @OSServicePack & " " & @OSArch)
 		SetLog(_PadStringCenter(" Bot Start ", 50, "="), $COLOR_GREEN)
+		SetLog(_PadStringCenter("  Current Profile: " & $sCurrProfile & " ", 73, "-"), $COLOR_BLUE)
+		If $DebugSetlog = 1 Or $DebugOcr = 1 Or $debugRedArea = 1 Or $DevMode = 1 Then
+			SetLog(_PadStringCenter(" Warning Debug Mode Enabled! Setlog: " & $DebugSetlog &" OCR: "& $DebugOcr & " RedArea: " & $debugRedArea & " ", 55, "-"), $COLOR_RED)
+		EndIf
 		$AttackNow = False
 		$FirstStart = True
 		$Checkrearm = True
@@ -116,6 +120,7 @@ Func Initiate()
 		GUICtrlSetState($btnStop, $GUI_SHOW)
 		GUICtrlSetState($btnPause, $GUI_SHOW)
 		GUICtrlSetState($btnResume, $GUI_HIDE)
+		GUICtrlSetState($btnSearchMode, $GUI_HIDE)
 		;GUICtrlSetState($btnMakeScreenshot, $GUI_DISABLE)
 
 		AdlibRegister("SetTime", 1000)
@@ -169,6 +174,7 @@ Func btnStart()
 		GUICtrlSetState($btnStart, $GUI_HIDE)
 		GUICtrlSetState($btnStop, $GUI_SHOW)
 		GUICtrlSetState($btnPause, $GUI_SHOW)
+		GUICtrlSetState($btnSearchMode, $GUI_HIDE)
 		;GUICtrlSetState($btnMakeScreenshot, $GUI_DISABLE)
 		$FirstAttack = 0
 		$NoMoreWalls = 0
@@ -214,6 +220,7 @@ Func btnStop()
 		GUICtrlSetState($btnStop, $GUI_HIDE)
 		GUICtrlSetState($btnPause, $GUI_HIDE)
 		GUICtrlSetState($btnResume, $GUI_HIDE)
+		GUICtrlSetState($btnSearchMode, $GUI_SHOW)
 		;GUICtrlSetState($btnMakeScreenshot, $GUI_ENABLE)
 
 
@@ -287,3 +294,34 @@ EndFunc   ;==>btnHide
 Func btnMakeScreenshot()
 	If $RunState Then $iMakeScreenshotNow = True
 EndFunc   ;==>btnMakeScreenshot
+
+Func btnSearchMode()
+	While 1
+		GUICtrlSetState($btnStart, $GUI_HIDE)
+		GUICtrlSetState($btnStop, $GUI_SHOW)
+		;GUICtrlSetState($btnMakeScreenshot, $GUI_DISABLE)
+		GUICtrlSetState($btnLocateBarracks, $GUI_DISABLE)
+		GUICtrlSetState($btnSearchMode, $GUI_HIDE)
+		GUICtrlSetState($cmbTroopComp, $GUI_DISABLE)
+		GUICtrlSetState($chkBackground, $GUI_DISABLE)
+		;GUICtrlSetState($btnLocateCollectors, $GUI_DISABLE)
+
+		$MeetCondStop = False
+		$RunState = True
+		PrepareSearch()
+		If _Sleep(1000) Then Return
+		VillageSearch()
+		$RunState = False
+
+		GUICtrlSetState($btnStart, $GUI_SHOW)
+		GUICtrlSetState($btnStop, $GUI_HIDE)
+
+		GUICtrlSetState($btnLocateBarracks, $GUI_ENABLE)
+		;GUICtrlSetState($btnSearchMode, $GUI_ENABLE)
+		GUICtrlSetState($cmbTroopComp, $GUI_ENABLE)
+		GUICtrlSetState($chkBackground, $GUI_ENABLE)
+		;GUICtrlSetState($btnLocateCollectors, $GUI_ENABLE)
+		ExitLoop
+	WEnd
+EndFunc   ;==>btnSearchMode
+

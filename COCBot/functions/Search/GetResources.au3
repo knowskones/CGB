@@ -40,7 +40,7 @@ Func GetResources() ;Reads resources
 				Return
 			EndIf
 		EndIf
-		If $debugSetlog = 1 Then SetLog("Loop to clean screen without Clouds , nº :" & $i)
+		If $debugSetlog = 1 Then SetLog("Loop to clean screen without Clouds , nº :" & $i, $COLOR_PURPLE)
 	WEnd
 
 	If _Sleep(150) Then Return

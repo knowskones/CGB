@@ -65,7 +65,7 @@ Func LocateLab()
 			ClickP($aTopLeftClient)
 			Return
 		EndIf
-		$sLabInfo = BuildingInfo(250, 520)
+		$sLabInfo = BuildingInfo(242, 520)
 		If $sLabInfo[0] > 1 Or $sLabInfo[0] = "" Then
 			If  StringInStr($sLabInfo[1], "Lab") = 0 Then
 				If $sLabInfo[0] = "" Then

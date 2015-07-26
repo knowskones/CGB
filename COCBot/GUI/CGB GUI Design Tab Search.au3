@@ -29,7 +29,7 @@ $tabSearch = GUICtrlCreateTabItem("Search")
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 	$x = 195
-	$grpH = GUICtrlCreateGroup("Alert", $x - 20, $y - 20, 180, 55)
+	$grpAlert = GUICtrlCreateGroup("Alert", $x - 20, $y - 20, 180, 55)
 		$chkAlertSearch = GUICtrlCreateCheckbox("Alert me when a Base is found.", $x - 10, $y, -1, -1, $BS_MULTILINE)
 			GUICtrlSetTip(-1, "Check this if you want an Audio alarm & a Balloon Tip when a Base to attack is found.")
 			GUICtrlSetState(-1, $GUI_CHECKED)

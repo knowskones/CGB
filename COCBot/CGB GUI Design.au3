@@ -45,10 +45,10 @@ GUICtrlSetOnEvent(-1, "")
 #include "GUI\CGB GUI Design Tab EndBattle.au3"
 #include "GUI\CGB GUI Design Tab Donate.au3"
 #include "GUI\CGB GUI Design Tab Misc.au3"
+#include "GUI\CGB GUI Design Tab Profiles.au3"
 #include "GUI\CGB GUI Design Tab Upgrade.au3"
 #include "GUI\CGB GUI Design Tab Notify.au3"
 #include "GUI\CGB GUI Design Tab Expert.au3"
-#include "GUI\CGB GUI Design Tab Profiles.au3"
 #include "GUI\CGB GUI Design Tab Stats.au3" ; includes '$LastControlToHide" on GUI
 
 ;~ -------------------------------------------------------------

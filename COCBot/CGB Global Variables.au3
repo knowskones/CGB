@@ -44,7 +44,7 @@
 ;debugging
 Global $debugSearchArea = 0, $debugOcr = 0, $debugRedArea = 0, $debugSetlog = 0
 
-Global Const $COLOR_ORANGE = 0xFFA500
+Global Const $COLOR_ORANGE = 0xFF7700
 Global Const $bCapturePixel = True, $bNoCapturePixel = False
 
 Global $Compiled
@@ -63,13 +63,18 @@ Global $hHBitmapScreenshot; Handle Image for screenshot functions
 Global $Title = "BlueStacks App Player" ; Name of the Window
 Global $HWnD = WinGetHandle($Title) ;Handle for Bluestacks window
 
-Global $sCurrProfile = "01"
 Global $iVillageName
 Global $sProfilePath = @ScriptDir & "\Profiles"
 Global $sTemplates = @ScriptDir & "\Templates"
-If FileExists($sProfilePath & "\profile.ini") Then
-	$sCurrProfile = IniRead($sProfilePath & "\profile.ini", "general", "defaultprofile", "01")
+If $CmdLine[0] > 0 Then
+	$sCurrProfile = $CmdLine[1]
+ElseIf FileExists($sProfilePath & "\profile.ini") Then
+	Global $sCurrProfile = IniRead($sProfilePath & "\profile.ini", "general", "defaultprofile", "01")
+Else
+	Global $sCurrProfile = "01"
 EndIf
+Global $DevMode = 0
+If FileExists(@ScriptDir & "\EnableGameBotDebug.txt") Then $DevMode = 1
 Global $config = $sProfilePath & "\" & $sCurrProfile & "\config.ini"
 Global $building = $sProfilePath & "\" & $sCurrProfile & "\building.ini"
 Global $dirLogs = $sProfilePath & "\" & $sCurrProfile & "\Logs\"
@@ -137,7 +142,7 @@ Global $ichkAlertPBCampFull
 Global $ichkAlertPBCampFullTest = 0
 Global $cmbTroopComp ;For Event change on ComboBox Troop Compositions
 Global $iCollectCounter = 0 ; Collect counter, when reaches $COLLECTATCOUNT, it will collect
-Global $COLLECTATCOUNT = 8 ; Run Collect() after this amount of times before actually collect
+Global $COLLECTATCOUNT = 10 ; Run Collect() after this amount of times before actually collect
 
 ;---------------------------------------------------------------------------------------------------
 Global $BSpos[2] ; Inside BlueStacks positions relative to the screen
@@ -275,7 +280,7 @@ Global $OutOfGold = 0 ; Flag for out of gold to search for attack
 Global $OutOfElixir = 0 ; Flag for out of elixir to train troops
 
 ;Zoom/scroll variables for TH snipe, bottom corner
-Global $zoomedin = false, $zCount = 0, $sCount = 0
+Global $zoomedin = False, $zCount = 0, $sCount = 0
 
 ;Boosts Settings
 Global $remainingBoosts = 0 ;  remaining boost to active during session
@@ -283,7 +288,7 @@ Global $boostsEnabled = 1 ; is this function enabled
 
 ; TownHall Settings
 Global $TownHallPos[2] = [-1, -1] ;Position of TownHall
-Global $iTownHallLevel = 0  ; Level of user townhall
+Global $iTownHallLevel = 0 ; Level of user townhall
 Global $Y[4] = [46, 116, 120, 116]
 ;Mics Setting
 Global $SFPos[2] = [-1, -1] ;Position of Spell Factory
@@ -418,6 +423,7 @@ Global $BarrackDarkStatus[2] = [False, False]
 Global $listResourceLocation = ""
 Global $isNormalBuild = ""
 Global $isDarkBuild = ""
+Global $TotalTrainedTroops = 0
 
 For $i = 0 To UBound($TroopGroup, 1) - 1
 	$TroopName[$i] = $TroopGroup[$i][0]
@@ -493,7 +499,7 @@ Global $pushLastModified = 0
 
 
 ;UpgradeTroops
-Global $aLabPos[2] = [-1,-1]
+Global $aLabPos[2] = [-1, -1]
 Global $iChkLab, $iCmbLaboratory, $iFirstTimeLab
 
 ; Array to hold Laboratory Troop information [LocX of upper left corner of image, LocY of upper left corner of image, PageLocation, Troop "name", Icon # in DLL file]
@@ -581,6 +587,11 @@ Global $numFactorySpell = 0
 Global $numFactorySpellAvaiables = 0
 Global $numFactoryDarkSpell = 0
 Global $numFactoryDarkSpellAvaiables = 0
+
+;position of barakcs
+Global $btnpos = [[114, 535], [228, 535], [288, 535], [348, 535], [409, 535], [494, 535], [555, 535], [637, 535], [698, 535]]
+;barracks and spells avaiables
+Global $Trainviable = [1, 0, 0, 0, 0, 0, 0, 0, 0]
 
 ; Attack Report
 Global $BonusLeagueG, $BonusLeagueE, $BonusLeagueD, $LeagueShort

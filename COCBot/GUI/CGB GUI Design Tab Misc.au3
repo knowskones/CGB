@@ -24,7 +24,7 @@ Local $x = 30, $y = 150
 			GUICtrlSetTip(-1, $txtTip)
 		$cmbBotCommand = GUICtrlCreateCombo("", $x + 20, $y - 3, 90, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			GUICtrlSetTip(-1, $txtTip)
-			GUICtrlSetData(-1, "Halt Attack|Shutdown PC|Sleep PC", "Halt Attack")
+			GUICtrlSetData(-1, "Halt Attack|Shutdown PC|Sleep PC|Reboot PC", "Halt Attack")
 		$lblBotCond = GUICtrlCreateLabel("When...", $x + 125, $y, 45, 17)
 		$cmbBotCond = GUICtrlCreateCombo("", $x + 175, $y - 3, 160, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			GUICtrlSetTip(-1, $txtTip)
@@ -103,7 +103,7 @@ Local $x = 30, $y = 150
 			GUICtrlSetLimit(-1, 4)
 			GUICtrlSetTip(-1, $txtTip)
 		$lblDash = GUICtrlCreateLabel(" - ", $x + 148, $y, -1, -1)
-		$txtMaxTrophy = GUICtrlCreateInput("3000", $x + 160, $y - 5, 35, -1, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+		$txtMaxTrophy = GUICtrlCreateInput("5000", $x + 160, $y - 5, 35, -1, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 			$txtTip = "MAX: The Bot will drop trophies if your trophy count is greater than this value."
 			GUICtrlSetLimit(-1, 4)
 			GUICtrlSetTip(-1, $txtTip)

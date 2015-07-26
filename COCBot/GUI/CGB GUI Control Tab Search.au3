@@ -218,37 +218,6 @@ Func chkABWeakBase()
 	EndIf
 EndFunc   ;==>chkABWeakBase
 
-Func btnSearchMode()
-	While 1
-		GUICtrlSetState($btnStart, $GUI_HIDE)
-		GUICtrlSetState($btnStop, $GUI_SHOW)
-		;GUICtrlSetState($btnMakeScreenshot, $GUI_DISABLE)
-		GUICtrlSetState($btnLocateBarracks, $GUI_DISABLE)
-		;GUICtrlSetState($btnSearchMode, $GUI_DISABLE)
-		GUICtrlSetState($cmbTroopComp, $GUI_DISABLE)
-		GUICtrlSetState($chkBackground, $GUI_DISABLE)
-		;GUICtrlSetState($btnLocateCollectors, $GUI_DISABLE)
-
-		$MeetCondStop = False
-		$RunState = True
-		PrepareSearch()
-		If _Sleep(1000) Then Return
-		VillageSearch()
-		$RunState = False
-
-		GUICtrlSetState($btnStart, $GUI_SHOW)
-		GUICtrlSetState($btnStop, $GUI_HIDE)
-
-		GUICtrlSetState($btnLocateBarracks, $GUI_ENABLE)
-		;GUICtrlSetState($btnSearchMode, $GUI_ENABLE)
-		GUICtrlSetState($cmbTroopComp, $GUI_ENABLE)
-		GUICtrlSetState($chkBackground, $GUI_ENABLE)
-		;GUICtrlSetState($btnLocateCollectors, $GUI_ENABLE)
-		ExitLoop
-	WEnd
-EndFunc   ;==>btnSearchMode
-
-
 Func hidehero()
 	GUICtrlSetState($btnHeroSwitch, $GUI_SHOW)
 	GUICtrlSetState($btnNormalSwitch, $GUI_HIDE)
@@ -264,6 +233,7 @@ Func hidehero()
 		GUICtrlSetState($i, $GUI_SHOW)
 	Next
 EndFunc
+
 Func hidenormal()
 	GUICtrlSetState($btnNormalSwitch, $GUI_SHOW)
 	GUICtrlSetState($btnHeroSwitch, $GUI_HIDE)

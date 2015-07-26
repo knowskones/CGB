@@ -15,8 +15,11 @@
 ; ===============================================================================================================================
 Func DropTrophy()
 	Local $TrophyCount = getTrophyMainScreen($aTrophies[0], $aTrophies[1])
-	Local $iCount
+	If $DebugSetlog = 1 Then SetLog("Trophy Count : " & $TrophyCount, $COLOR_PURPLE)
+
+	Local $iCount, $RandomEdge, $RandomXY
 	Local $itxtMaxTrophyNeedCheck
+
 	$itxtMaxTrophyNeedCheck = $itxtMaxTrophy ; $itxtMaxTrophy = 1800
 
 	If Number($TrophyCount) > Number($itxtMaxTrophyNeedCheck) Then
@@ -61,6 +64,7 @@ Func DropTrophy()
 								SetLog(_PadStringCenter(" Dead Base Found!! ", 50, "~"), $COLOR_GREEN)
 								Attack()
 								ReturnHome($TakeLootSnapShot)
+								$ReStart = True  ; Set restart flag after dead base attack to ensure troops are trained
 								ExitLoop ; or Return, Will end function, no troops left to drop Trophies, will need to Train new Troops first
 							EndIf
 						EndIf
@@ -79,12 +83,14 @@ Func DropTrophy()
 								EndIf
 							Next
 
-
+							$RandomEdge = $Edges[Round(Random(0, 3))]
+							$RandomXY = Round(Random(0, 4))
+							If $DebugSetlog = 1 Then Setlog("Hero Loc = " & $RandomXY & ", X:Y= " & $RandomEdge[$RandomXY][0] & "|" & $RandomEdge[$RandomXY][1], $COLOR_PURPLE)
 							If $King <> -1 Then
 								SetLog("Deploying King", $COLOR_BLUE)
 								Click(GetXPosOfArmySlot($King, 68), 595, 1, 0, "#0177") ;Select King
 								_Sleep(1000)
-								Click(34, 310, 1, 0, "#0178") ;Drop King
+								Click($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], 1, 0, "#0178") ;Drop King
 								If _Sleep(1000) Then ExitLoop
 								SetTrophyLoss()
 								ReturnHome(False, False) ;Return home no screenshot
@@ -94,7 +100,7 @@ Func DropTrophy()
 								SetLog("Deploying Queen", $COLOR_BLUE)
 								Click(GetXPosOfArmySlot($Queen, 68), 595, 1, 0, "#0179") ;Select Queen
 								_Sleep(1000)
-								Click(34, 310, 1, 0, "#0180") ;Drop Queen
+								Click($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], 1, 0, "#0180") ;Drop Queen
 								If _Sleep(1000) Then ExitLoop
 								SetTrophyLoss()
 								ReturnHome(False, False) ;Return home no screenshot
@@ -102,34 +108,37 @@ Func DropTrophy()
 							EndIf
 						EndIf
 						If ($Queen = -1 And $King = -1) Or $iChkTrophyHeroes = 0 Then
+							$RandomEdge = $Edges[Round(Random(0, 3))]
+							$RandomXY = Round(Random(0, 4))
+							If $DebugSetlog = 1 Then Setlog("Troop Loc = " & $RandomXY & ", X:Y= " & $RandomEdge[$RandomXY][0] & "|" & $RandomEdge[$RandomXY][1], $COLOR_PURPLE)
 							Select
 								Case $atkTroops[0][0] = $eBarb
-									Click(34, 310, 1, 0, "#0181") ;Drop one troop
+									Click($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], 1, 0, "#0181") ;Drop one troop
 									$CurBarb += 1
 									$ArmyComp -= 1
 									SetLog("Deploying 1 Barbarian", $COLOR_BLUE)
 								Case $atkTroops[0][0] = $eArch
-									Click(34, 310, 1, 0, "#0182") ;Drop one troop
+									Click($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], 1, 0, "#0182") ;Drop one troop
 									$CurArch += 1
 									$ArmyComp -= 1
 									SetLog("Deploying 1 Archer", $COLOR_BLUE)
 								Case $atkTroops[0][0] = $eGiant
-									Click(34, 310, 1, 0, "#0183") ;Drop one troop
+									Click($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], 1, 0, "#0183") ;Drop one troop
 									$CurGiant += 1
 									$ArmyComp -= 5
 									SetLog("Deploying 1 Giant", $COLOR_BLUE)
 								Case $atkTroops[0][0] = $eWall
-									Click(34, 310, 1, 0, "#0184") ;Drop one troop
+									Click($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], 1, 0, "#0184") ;Drop one troop
 									$CurWall += 1
 									$ArmyComp -= 2
 									SetLog("Deploying 1 WallBreaker", $COLOR_BLUE)
 								Case $atkTroops[0][0] = $eGobl
-									Click(34, 310, 1, 0, "#0185") ;Drop one troop
+									Click($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], 1, 0, "#0185") ;Drop one troop
 									$CurGobl += 1
 									$ArmyComp -= 2
 									SetLog("Deploying 1 Goblin", $COLOR_BLUE)
 								Case $atkTroops[0][0] = $eMini
-									Click(34, 310, 1, 0, "#0186") ;Drop one troop
+									Click($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], 1, 0, "#0186") ;Drop one troop
 									$CurMini += 1
 									$ArmyComp -= 2
 									SetLog("Deploying 1 Minion", $COLOR_BLUE)
@@ -188,12 +197,14 @@ Func DropTrophy()
 							EndIf
 						Next
 
-
+						$RandomEdge = $Edges[Round(Random(0, 3))]
+						$RandomXY = Round(Random(0, 4))
+						If $DebugSetlog = 1 Then Setlog("Hero Loc = " & $RandomXY & ", X:Y= " & $RandomEdge[$RandomXY][0] & "|" & $RandomEdge[$RandomXY][1], $COLOR_PURPLE)
 						If $King <> -1 Then
 							SetLog("Deploying King", $COLOR_BLUE)
 							Click(GetXPosOfArmySlot($King, 68), 595, 1, 0, "#0187") ;Select King
 							_Sleep(1000)
-							Click(34, 310, 1, 0, "#0188") ;Drop King
+							Click($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], 1, 0, "#0188") ;Drop King
 							If _Sleep(1000) Then ExitLoop
 							SetTrophyLoss()
 							ReturnHome(False, False) ;Return home no screenshot
@@ -203,7 +214,7 @@ Func DropTrophy()
 							SetLog("Deploying Queen", $COLOR_BLUE)
 							Click(GetXPosOfArmySlot($Queen, 68), 595, 1, 0, "#0189") ;Select Queen
 							_Sleep(1000)
-							Click(34, 310, 1, 0, "#0190") ;Drop Queen
+							Click($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], 1, 0, "#0190") ;Drop Queen
 							If _Sleep(1000) Then ExitLoop
 							SetTrophyLoss()
 							ReturnHome(False, False) ;Return home no screenshot
@@ -211,34 +222,37 @@ Func DropTrophy()
 						EndIf
 					EndIf
 					If ($Queen = -1 And $King = -1) Or $iChkTrophyHeroes = 0 Then
+						$RandomEdge = $Edges[Round(Random(0, 3))]
+						$RandomXY = Round(Random(0, 4))
+						If $DebugSetlog = 1 Then Setlog("Troop Loc = " & $RandomXY & ", X:Y= " & $RandomEdge[$RandomXY][0] & "|" & $RandomEdge[$RandomXY][1], $COLOR_PURPLE)
 						Select
 							Case $atkTroops[0][0] = $eBarb
-								Click(34, 310, 1, 0, "#0191") ;Drop one troop
+								Click($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], 1, 0, "#0191") ;Drop one troop
 								$CurBarb += 1
 								$ArmyComp -= 1
 								SetLog("Deploying 1 Barbarian", $COLOR_BLUE)
 							Case $atkTroops[0][0] = $eArch
-								Click(34, 310, 1, 0, "#0192") ;Drop one troop
+								Click($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], 1, 0, "#0192") ;Drop one troop
 								$CurArch += 1
 								$ArmyComp -= 1
 								SetLog("Deploying 1 Archer", $COLOR_BLUE)
 							Case $atkTroops[0][0] = $eGiant
-								Click(34, 310, 1, 0, "#0193") ;Drop one troop
+								Click($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], 1, 0, "#0193") ;Drop one troop
 								$CurGiant += 1
 								$ArmyComp -= 5
 								SetLog("Deploying 1 Giant", $COLOR_BLUE)
 							Case $atkTroops[0][0] = $eWall
-								Click(34, 310, 1, 0, "#0194") ;Drop one troop
+								Click($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], 1, 0, "#0194") ;Drop one troop
 								$CurWall += 1
 								$ArmyComp -= 2
 								SetLog("Deploying 1 WallBreaker", $COLOR_BLUE)
 							Case $atkTroops[0][0] = $eGobl
-								Click(34, 310, 1, 0, "#0195") ;Drop one troop
+								Click($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], 1, 0, "#0195") ;Drop one troop
 								$CurGobl += 1
 								$ArmyComp -= 2
 								SetLog("Deploying 1 Goblin", $COLOR_BLUE)
 							Case $atkTroops[0][0] = $eMini
-								Click(34, 310, 1, 0, "#0196") ;Drop one troop
+								Click($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], 1, 0, "#0196") ;Drop one troop
 								$CurMini += 1
 								$ArmyComp -= 2
 								SetLog("Deploying 1 Minion", $COLOR_BLUE)

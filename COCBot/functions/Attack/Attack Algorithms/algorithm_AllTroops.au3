@@ -185,7 +185,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 			;Else
 			;	 LauchTroop($i, $nbSides, 0, 1, 2)
 			;EndIf
-			If _Sleep(200) Then Return
+			If _Sleep(500) Then Return
 		Next
 	Next
 

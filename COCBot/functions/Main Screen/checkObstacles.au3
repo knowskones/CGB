@@ -29,7 +29,7 @@ Func checkObstacles() ;Checks if something is in the way for mainscreen
 			SetLog("Another Device has connected, waiting " & Floor(Mod($sTimeWakeUp, 60)) & " seconds", $COLOR_RED)
 			PushMsg("AnotherDevice")
 		EndIf
-		If _Sleep($sTimeWakeUp * 1000) Then Return ; 2 Minutes
+		If _SleepStatus($sTimeWakeUp * 1000) Then Return ; 2 Minutes
 		$iTimeTroops = 0
 		PureClickP($aReloadButton, 1, 0, "#0127");Check for "Another device" message
 		If _Sleep(2000) Then Return
@@ -81,11 +81,11 @@ Func checkObstacles() ;Checks if something is in the way for mainscreen
 		If _Sleep(1000) Then Return
 		Return True
 	EndIf
-	If _CheckPixel($aEndFightScene, $bNoCapturePixel) Then
-		PureClickP($aEndFightScene, 1, 0, "#0137") ;If in that victory or defeat scene
+	If _CheckPixel($aEndFightSceneBtn, $bNoCapturePixel) Then
+		PureClickP($aEndFightSceneBtn, 1, 0, "#0137") ;If in that victory or defeat scene
 		Return True
 	EndIf
-	If _ColorCheck(_GetPixelColor(71, 530), Hex(0xC00000, 6), 20) Then
+	If _CheckPixel($aSurrenderButton, $bNoCapturePixel) Then
 		ReturnHome(False, False) ;If End battle is available
 		Return True
 	EndIf
