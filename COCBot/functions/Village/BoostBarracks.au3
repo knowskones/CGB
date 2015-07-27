@@ -101,7 +101,7 @@ Func BoostSpellFactory()
 						_GUICtrlComboBox_SetCurSel($cmbBoostSpellFactory, 0)
 						SetLog("Not enough gems", $COLOR_RED)
 					Else
-						If _GUICtrlComboBox_SetCurSel($cmbBoostSpellFactory) > 5 Then
+						If _GUICtrlComboBox_GetCurSel($cmbBoostSpellFactory) > 5 Then
 							SetLog('Boost completed. Remaining :' & GUICtrlRead($cmbBoostSpellFactory), $COLOR_GREEN)
 						Else
 							_GUICtrlComboBox_SetCurSel($cmbBoostSpellFactory, (GUICtrlRead($cmbBoostSpellFactory) - 1))
