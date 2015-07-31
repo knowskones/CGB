@@ -20,7 +20,7 @@ Func dropSpell($x, $y, $spell) ;Drop Spell
 	If $spell <> -1 Then
 		SetLog("Dropping " & NameOfTroop($spell) & " spell", $COLOR_BLUE)
 		Click(GetXPosOfArmySlot($spell, 68, 595, 1,0,"#0001") ;Select spell (FIXME: add debug info)
-		If_Sleep(500) Then Return
+		_Sleep(500)
 		Click($x, $y) ; drop it (FIXME: add debug info)
 	EndIf
 EndFunc   ;==>dropSpell
